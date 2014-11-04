@@ -20,7 +20,7 @@
  * its child will be a red leaf.
  *)
 
-functor RedBlackSetFn (K : ORD_KEY) :> ORD_SET where Key = K =
+functor RedBlackSetFn (K : ORD_KEY) :> ORD_SET where type Key.ord_key = K.ord_key =
   struct
 
     structure Key = K
