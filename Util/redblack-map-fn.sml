@@ -23,7 +23,7 @@
  * its child will be a red leaf.
  *)
 
-functor RedBlackMapFn (K : ORD_KEY) :> ORD_MAP where Key = K =
+functor RedBlackMapFn (K : ORD_KEY) :> ORD_MAP where type Key.ord_key = K.ord_key =
   struct
 
     structure Key = K
