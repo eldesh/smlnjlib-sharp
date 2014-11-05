@@ -6,8 +6,10 @@ INCDIR = $(patsubst %,-I%,$(subst :, ,$(VPATH)))
 SMLSHARPFLAGS = $(INCDIR)
 
 SRCS = lib-base.sml \
-	   redblack-set-fn.sml \
-	   redblack-map-fn.sml
+       redblack-set-fn.sml \
+       redblack-map-fn.sml \
+       int-redblack-set.sml \
+       int-redblack-map.sml
 
 OBJS = $(SRCS:.sml=.o)
 
