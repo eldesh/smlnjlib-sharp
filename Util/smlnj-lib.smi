@@ -31,5 +31,9 @@ include "int-hash-table.smi"
 (* binary map/set *)
 include "binary-set-fn.smi"
 include "binary-map-fn.smi"
+include "atom-binary-set.smi"
+include "atom-binary-map.smi"
+include "int-binary-set.smi"
+include "int-binary-map.smi"
 
 

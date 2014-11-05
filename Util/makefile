@@ -30,7 +30,11 @@ SRCS = lib-base.sml          \
        int-hash-table.sml    \
        word-hash-table.sml   \
        binary-set-fn.sml     \
-       binary-map-fn.sml
+       binary-map-fn.sml     \
+       atom-binary-map.sml   \
+       atom-binary-set.sml   \
+       int-binary-map.sml    \
+       int-binary-set.sml
 
 OBJS = $(SRCS:.sml=.o)
 
