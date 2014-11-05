@@ -29,6 +29,7 @@ SRCS = lib-base.sml          \
        hash-table.sml        \
        int-hash-table.sml    \
        word-hash-table.sml   \
+       atom-table.sml        \
        binary-set-fn.sml     \
        binary-map-fn.sml     \
        atom-binary-map.sml   \

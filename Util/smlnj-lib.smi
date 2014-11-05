@@ -27,6 +27,7 @@ include "hash-table-rep.smi"
 include "hash-table.smi"
 include "int-hash-table.smi"
 include "int-hash-table.smi"
+include "atom-table.smi"
 
 (* binary map/set *)
 include "binary-set-fn.smi"
