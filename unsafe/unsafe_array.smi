@@ -1,0 +1,9 @@
+_require "unsafe_array.sig"
+
+structure UnsafeArray (* :> UNSAFE_ARRAY *) =
+struct
+  val sub : 'a array * int -> 'a
+  val update : 'a array * int * 'a -> unit
+  val create : int * 'a -> 'a array
+end
+

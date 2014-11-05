@@ -3,8 +3,8 @@ structure Unsafe =
 struct
   (*
   structure Vector      = UnsafeVector
-  structure Array       = UnsafeArray
   *)
+  structure Array       = UnsafeArray
   structure CharVector  = UnsafeCharVector
   structure CharArray   = UnsafeCharArray
   structure Word8Vector = UnsafeWord8Vector
