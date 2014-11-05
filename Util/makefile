@@ -56,7 +56,8 @@ SRCS = lib-base.sml          \
        iterate.sml           \
        keyword-fn.sml        \
        left-priorityq-fn.sml \
-       list-format.sml
+       list-format.sml       \
+       list-mergesort.sml
 
 OBJS = $(SRCS:.sml=.o)
 

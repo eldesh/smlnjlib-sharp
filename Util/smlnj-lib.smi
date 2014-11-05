@@ -12,6 +12,7 @@ include "io-util.smi"
 include "iterate.smi"
 include "keyword-fn.smi"
 include "left-priorityq-fn.smi"
+include "list-mergesort.smi"
 
 (* format *)
 include "fmt-fields.smi"
