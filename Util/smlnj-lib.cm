@@ -171,6 +171,7 @@ graph-scc-sig.sml
 graph-scc-fn.sml
 hash-key-sig.sml
 hash-string.sml
+hash-set-sig.sml
 hash-set-fn.sml
 hash-table-rep.sml
 hash-table-sig.sml
