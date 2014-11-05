@@ -6,6 +6,7 @@ include "bsearch-fn.smi"
 include "char-map.smi"
 include "fifo.smi"
 include "fmt-fields.smi"
+include "format-comb.smi"
 
 (* redblack tree *)
 include "redblack-set-fn.smi"

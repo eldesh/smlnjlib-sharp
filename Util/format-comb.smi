@@ -1,0 +1,98 @@
+_require "basis.smi"
+_require "format-comb-sig.sml"
+
+structure FormatComb (* :> FORMAT_COMB *) =
+struct
+
+ (* We reveal "fragments" to be functions from abstract formats
+  * to abstract formats.  This is to make sure we can use function
+  * composition on them.
+  *)
+    type 'a format (= boxed)
+    type ('a, 'b) fragment = 'a format -> 'b format
+
+  (* Two primitive kinds of fragments:  Glue inserts some text
+   * into the output without consuming an argument.  Elements
+   * insert text corresponding to some (curried) argument into
+   * the output:
+   *)
+    type 'a glue          = ('a, 'a) fragment
+    type ('a, 't) element = ('a, 't -> 'a) fragment
+    type 'a gg (= boxed) (* abstract helper type *)
+
+  (* Format execution... *)
+  (*  1. Simple version, produce final result as a string: *)
+    val format  : (string, 'a) fragment -> 'a
+
+  (*  2. Complex version, take a receiver function that will
+   *     be invoked with the final result.  The result is
+   *     still in non-concatenated form at this time.
+   *     (Internally, the combinators avoid string concatenation
+   *      as long as there is no padding/trimming/fitting going on.)
+   *)
+    val format' : (string list -> 'b) -> ('b, 'a) fragment -> 'a
+
+  (* Make a type-specific element given a toString function for this type *)
+    val using : ('t -> string) -> ('a, 't) element
+
+  (* Instantiate 'using' for a few types... *)
+    val int     : ('a, int) element	(* using Int.toString *)
+    val real    : ('a, real) element	(* using Real.toString *)
+    val bool    : ('a, bool) element	(* using Bool.toString *)
+    val string  : ('a, string) element	(* using (fn x => x) *)
+    val string' : ('a, string) element	(* using String.toString *)
+    val char    : ('a, char) element	(* using String.str *)
+    val char'   : ('a, char) element	(* using Char.toString *)
+
+  (* Parameterized elements... *)
+    val int'  : StringCvt.radix   -> ('a, int) element  (* using (Int.fmt r) *)
+    val real' : StringCvt.realfmt -> ('a, real) element	(* using(Real.fmt f) *)
+
+  (* "polymorphic" elements *)
+    val list   : ('a, 'x) element -> ('a, 'x list) element (* "[", ", ", "]" *)
+    val option : ('a, 'x) element -> ('a, 'x option) element
+    val seq    : (('x * 'a gg -> 'a gg) -> 'a gg -> 's -> 'a gg) -> (* foldr *)
+		 'a glue ->	(* separator *)
+		 ('a, 'x) element -> ('a, 's) element
+
+  (* Generic "gluifier". *)
+    val glue : ('a, 't) element -> 't -> 'a glue
+
+  (* Inverse -- useful for writing extensions *)
+    val elem : ('t -> 'a glue) -> ('a, 't) element
+
+  (* Other glue... *)
+    val nothing :           'a glue	(* null glue *)
+    val text    : string -> 'a glue	(* constant text glue *)
+    val sp      : int ->    'a glue	(* n spaces glue *)
+    val nl      :           'a glue	(* newline glue *)
+    val tab     :           'a glue	(* tabulator glue *)
+
+  (* glue generator constructors *)
+    val listg   : ('t -> 'a glue) -> ('t list -> 'a glue)
+    val optiong : ('t -> 'a glue) -> ('t option -> 'a glue)
+
+    val seqg   : (('x * 'a gg -> 'a gg) -> 'a gg -> 's -> 'a gg) -> (* foldr *)
+		 'a glue ->	    (* separator *)
+		 ('x -> 'a glue) ->  (* glue maker *)
+		 's -> 'a glue	    (* glue maker for container *)
+
+
+  (* "Places" say which side of a string to pad or trim... *)
+    type place (= boxed)
+    val left   : place
+    val center : place
+    val right  : place
+
+  (* Pad, trim, or fit to size n the output corresponding to
+   * a format fragment:
+   *)
+    val pad  : place -> int -> ('a, 't) fragment -> ('a, 't) fragment
+    val trim : place -> int -> ('a, 't) fragment -> ('a, 't) fragment
+    val fit  : place -> int -> ('a, 't) fragment -> ('a, 't) fragment
+
+  (* specialized padding (left and right) *)
+    val padl : int -> ('a, 't) fragment -> ('a, 't) fragment
+    val padr : int -> ('a, 't) fragment -> ('a, 't) fragment
+end
+
