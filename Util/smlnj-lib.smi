@@ -5,8 +5,12 @@ include "base64.smi"
 include "bsearch-fn.smi"
 include "char-map.smi"
 include "fifo.smi"
+
+(* format *)
 include "fmt-fields.smi"
 include "format-comb.smi"
+include "real-format.smi"
+include "format.smi"
 
 (* redblack tree *)
 include "redblack-set-fn.smi"
