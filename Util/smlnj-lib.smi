@@ -8,6 +8,7 @@ include "fifo.smi"
 include "getopt.smi"
 include "graph-scc-fn.smi"
 include "interval-set-fn.smi"
+include "io-util.smi"
 
 (* format *)
 include "fmt-fields.smi"

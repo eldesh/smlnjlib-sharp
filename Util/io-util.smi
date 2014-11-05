@@ -1,0 +1,14 @@
+_require "basis.smi"
+_require "io-util-sig.sml"
+
+structure IOUtil (* : IO_UTIL *) =
+struct
+  type instream (= boxed)
+  type outstream (= boxed)
+
+  val withInputFile : string * ('a -> 'b) -> 'a -> 'b
+  val withInstream : instream * ('a -> 'b) -> 'a -> 'b
+  val withOutputFile : string * ('a -> 'b) -> 'a -> 'b
+  val withOutstream : outstream * ('a -> 'b) -> 'a -> 'b
+end
+
