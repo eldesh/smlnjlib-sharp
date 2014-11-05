@@ -14,6 +14,7 @@ include "keyword-fn.smi"
 include "left-priorityq-fn.smi"
 include "list-mergesort.smi"
 include "list-xprod.smi"
+include "parser-comb.smi"
 
 (* format *)
 include "fmt-fields.smi"
