@@ -41,7 +41,9 @@ SRCS = lib-base.sml          \
        base64.sml            \
        bit-array.sml         \
        bsearch-fn.sml        \
-       char-map.sml
+       char-map.sml          \
+       dynamic-array-fn.sml  \
+       dynamic-array.sml
 
 OBJS = $(SRCS:.sml=.o)
 
