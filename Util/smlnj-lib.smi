@@ -5,6 +5,7 @@ include "base64.smi"
 include "bsearch-fn.smi"
 include "char-map.smi"
 include "fifo.smi"
+include "getopt.smi"
 
 (* format *)
 include "fmt-fields.smi"

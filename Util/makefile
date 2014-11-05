@@ -48,7 +48,8 @@ SRCS = lib-base.sml          \
        fmt-fields.sml        \
        format-comb.sml       \
        real-format.sml       \
-       format.sml
+       format.sml            \
+       getopt.sml
 
 OBJS = $(SRCS:.sml=.o)
 
