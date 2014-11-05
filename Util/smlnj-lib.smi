@@ -18,6 +18,7 @@ include "fmt-fields.smi"
 include "format-comb.smi"
 include "real-format.smi"
 include "format.smi"
+include "list-format.smi"
 
 (* redblack tree *)
 include "redblack-set-fn.smi"
