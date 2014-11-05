@@ -1,0 +1,38 @@
+_require "basis.smi"
+_require "ord-key-sig.sml"
+_require "graph-scc-sig.sml"
+_require "redblack-map-fn.smi"
+
+functor GraphSCCFn (
+        Nd: sig (* ORD_KEY *)
+          type ord_key
+          val compare : ord_key * ord_key -> order
+	end) =
+struct
+    structure Nd = (* Nd *)
+    struct
+      type ord_key = Nd.ord_key
+      val compare : ord_key * ord_key -> order
+    end
+
+    type node = Nd.ord_key
+
+    datatype component
+      = SIMPLE of node			(* singleton, no self-loop *)
+      | RECURSIVE of node list
+
+    val topOrder': { roots: node list, follow: node -> node list }
+		   -> component list
+	(* take root node(s) and follow function and return
+	 * list of topologically sorted strongly-connected components;
+	 * the component that contains the first of the given "roots"
+	 * goes first
+	 *)
+
+    val topOrder : { root: node, follow: node -> node list }
+		   -> component list
+        (* for backward compatibility;
+	 * AXIOM: topOrder{root,follow}==topOrder'{roots=[root],follow=follow}
+	 *)
+end
+
