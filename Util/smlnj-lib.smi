@@ -28,3 +28,8 @@ include "hash-table.smi"
 include "int-hash-table.smi"
 include "int-hash-table.smi"
 
+(* binary map/set *)
+include "binary-set-fn.smi"
+include "binary-map-fn.smi"
+
+
