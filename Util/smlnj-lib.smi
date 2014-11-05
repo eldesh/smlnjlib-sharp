@@ -17,6 +17,7 @@ include "list-xprod.smi"
 include "parser-comb.smi"
 include "path-util.smi"
 include "plist.smi"
+include "prime-sizes.smi"
 
 (* format *)
 include "fmt-fields.smi"
