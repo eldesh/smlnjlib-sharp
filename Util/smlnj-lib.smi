@@ -17,6 +17,8 @@ include "parser-comb.smi"
 include "path-util.smi"
 include "plist.smi"
 include "prime-sizes.smi"
+include "rand.smi"
+include "random.smi"
 
 (* queue *)
 include "left-priorityq-fn.smi"

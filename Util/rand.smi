@@ -1,15 +1,10 @@
-(* rand-sig.sml
- *
- * COPYRIGHT (c) 1993 by AT&T Bell Laboratories. See COPYRIGHT file for details.
- * COPYRIGHT (c) 1998 by AT&T Laboratories.
- *
- * Signature for a simple random number generator.
- *
- *)
+_require "basis.smi"
+_require "lib-base.smi"
+_require "rand-sig.sml"
 
-signature RAND =
-  sig
-
+(* TODO: use Word31 *)
+structure Rand (* : RAND *) =
+struct
     type rand = Word32.word
 
     val randMin : rand
@@ -35,6 +30,5 @@ signature RAND =
        * Exception -
        *   Fail if j < i
        *)
-
-  end (* RAND *)
+end
 

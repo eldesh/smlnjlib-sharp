@@ -64,14 +64,19 @@ SRCS = lib-base.sml          \
        path-util.sml         \
        plist.sml             \
        prime-sizes.sml       \
-       queue.sml
+       queue.sml             \
+       rand.sml              \
+       random.sml
 
 OBJS = $(SRCS:.sml=.o)
 
-all: unsafe/unsafe.o $(OBJS)
+all: unsafe/unsafe.o basis/packword32big.o $(OBJS)
 
 unsafe/unsafe.o:
 	make -C ../unsafe
+
+basis/packword32big.o:
+	make -C ../basis
 
 ## .o type rules
 %.o: %.sml

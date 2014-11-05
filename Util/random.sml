@@ -24,17 +24,19 @@ structure Random : RANDOM =
     structure W8V = Word8Vector
     structure P   = PackWord32Big
 
-    val << = Word31.<<
-    val >> = Word31.>>
-    val & = Word31.andb
-    val ++ = Word31.orb
-    val xorb = Word31.xorb
+    structure W = Word32
+
+    val << = W.<<
+    val >> = W.>>
+    val &  = W.andb
+    val ++ = W.orb
+    val xorb = W.xorb
     infix << >> & ++
 
-    val nbits = 31                                      (* bits per word *)
-    val maxWord : Word31.word = 0wx7FFFFFFF             (* largest word *)
-    val bit30 : Word31.word   = 0wx40000000
-    val lo30 : Word31.word    = 0wx3FFFFFFF
+    val nbits = W.wordSize                              (* bits per word *)
+    val maxWord : W.word      = 0wx7FFFFFFF             (* largest word *)
+    val bit30 : W.word        = 0wx40000000
+    val lo30 : W.word         = 0wx3FFFFFFF
 
     val N = 48
     val lag = 8
@@ -48,9 +50,9 @@ structure Random : RANDOM =
       | minus(x,y,true) = (x - y - 0w1, y >= x)
 
     datatype rand = RND of {
-        vals   : Word31.word A.array,(* seed array *)
+        vals   : W.word A.array,     (* seed array *)
         borrow : bool ref,           (* last borrow *)
-        congx  : Word31.word ref,    (* congruential seed *)
+        congx  : W.word ref,         (* congruential seed *)
         index  : int ref             (* index of next available value in vals *)
       }
 
@@ -67,13 +69,13 @@ structure Random : RANDOM =
           fun fill (src,dst) =
                 if src = N then ()
                 else (
-                  P.update (arr, dst, Word31.toLargeWord (A.sub (vals, src)));
+                  P.update (arr, dst, W.toLargeWord (A.sub (vals, src)));
                   fill (src+1,dst+1)
                 )
           in
             P.update (arr, 0, word0);
             P.update (arr, 1, LW.fromInt (!index));
-            P.update (arr, 2, Word31.toLargeWord (!congx));
+            P.update (arr, 2, W.toLargeWord (!congx));
             fill (0,3);
             Byte.bytesToString (W8A.vector arr)
           end
@@ -88,12 +90,12 @@ structure Random : RANDOM =
           fun subVec i = P.subVec (bytes, i)
           val borrow = ref (LW.andb(word0,0w1) = 0w1)
           val index = ref (LW.toInt (subVec 1))
-          val congx = ref (Word31.fromLargeWord (subVec 2))
-          val arr = A.array (N, 0w0 : Word31.word)
+          val congx = ref (W.fromLargeWord (subVec 2))
+          val arr = A.array (N, 0w0 : W.word)
           fun fill (src,dst) =
                 if dst = N then ()
                 else (
-                  A.update (arr, dst, Word31.fromLargeWord (subVec src));
+                  A.update (arr, dst, W.fromLargeWord (subVec src));
                   fill (src+1,dst+1)
                 )
           in
@@ -107,8 +109,8 @@ structure Random : RANDOM =
       (* linear congruential generator:
        * multiplication by 48271 mod (2^31 - 1) 
        *)
-    val a : Word31.word = 0w48271
-    val m : Word31.word = 0w2147483647
+    val a : W.word = 0w48271
+    val m : W.word = 0w2147483647
     val q = m div a
     val r = m mod a
     fun lcg seed = let
@@ -163,8 +165,8 @@ structure Random : RANDOM =
             | genseed (n,seeds,congx,shrgx) = let
                 val (seed,congx',shrgx') = mkseed (congx,shrgx)
                 in genseed(n-1,seed::seeds,congx',shrgx') end
-          val congx = ((Word31.fromInt congy & maxWord) << 0w1)+0w1
-          val (seeds,congx) = genseed(N,[],congx, Word31.fromInt shrgx)
+          val congx = ((W.fromInt congy & maxWord) << 0w1)+0w1
+          val (seeds,congx) = genseed(N,[],congx, W.fromInt shrgx)
           in
             RND{vals = A.fromList seeds, 
                 index = ref 0, 
@@ -189,8 +191,8 @@ structure Random : RANDOM =
            else tweak(A.sub(vals,idx)) before index := idx+1
          end
 
-    fun randInt state = Word31.toIntX(randWord state)
-    fun randNat state = Word31.toIntX(randWord state & lo30)
+    fun randInt state = W.toIntX(randWord state)
+    fun randNat state = W.toIntX(randWord state & lo30)
     fun randReal state =
       (real(randNat state) + real(randNat state) * two2neg30) * two2neg30
 
