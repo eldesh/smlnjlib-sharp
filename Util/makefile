@@ -39,7 +39,8 @@ SRCS = lib-base.sml          \
        array-qsort-fn.sml    \
        array2.sml            \
        base64.sml            \
-       bit-array.sml
+       bit-array.sml         \
+       bsearch-fn.sml
 
 OBJS = $(SRCS:.sml=.o)
 
