@@ -11,13 +11,16 @@ include "interval-set-fn.smi"
 include "io-util.smi"
 include "iterate.smi"
 include "keyword-fn.smi"
-include "left-priorityq-fn.smi"
 include "list-mergesort.smi"
 include "list-xprod.smi"
 include "parser-comb.smi"
 include "path-util.smi"
 include "plist.smi"
 include "prime-sizes.smi"
+
+(* queue *)
+include "left-priorityq-fn.smi"
+include "queue.smi"
 
 (* format *)
 include "fmt-fields.smi"

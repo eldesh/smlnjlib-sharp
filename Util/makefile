@@ -63,7 +63,8 @@ SRCS = lib-base.sml          \
        parser-comb.sml       \
        path-util.sml         \
        plist.sml             \
-       prime-sizes.sml
+       prime-sizes.sml       \
+       queue.sml
 
 OBJS = $(SRCS:.sml=.o)
 
