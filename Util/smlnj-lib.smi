@@ -25,4 +25,6 @@ include "hash2-table-fn.smi"
 include "hash-table-fn.smi"
 include "hash-table-rep.smi"
 include "hash-table.smi"
+include "int-hash-table.smi"
+include "int-hash-table.smi"
 
