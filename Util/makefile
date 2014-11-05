@@ -20,8 +20,10 @@ SRCS = lib-base.sml          \
        word-redblack-map.sml \
        list-set-fn.sml       \
        list-map-fn.sml       \
-       int-list-set.sml \
-       int-list-map.sml
+       int-list-set.sml      \
+       int-list-map.sml      \
+       hash2-table-fn.sml    \
+       hash-table-rep.sml
 
 OBJS = $(SRCS:.sml=.o)
 

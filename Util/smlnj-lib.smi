@@ -1,6 +1,7 @@
 include "lib-base.smi"
 include "hash-string.smi"
 include "atom.smi"
+
 (* redblack tree *)
 include "redblack-set-fn.smi"
 include "redblack-map-fn.smi"
@@ -18,4 +19,8 @@ include "list-set-fn.smi"
 include "list-map-fn.smi"
 include "int-list-map.smi"
 include "int-list-set.smi"
+
+(* hash *)
+include "hash2-table-fn.smi"
+include "hash-table-rep.smi"
 
