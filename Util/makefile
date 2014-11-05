@@ -22,9 +22,11 @@ SRCS = lib-base.sml          \
        list-map-fn.sml       \
        int-list-set.sml      \
        int-list-map.sml      \
-       hash2-table-fn.sml    \
        hash-table-rep.sml    \
-       hash-set-fn.sml
+       hash-set-fn.sml       \
+       hash-table-fn.sml     \
+       hash2-table-fn.sml    \
+       hash-table.sml
 
 OBJS = $(SRCS:.sml=.o)
 
