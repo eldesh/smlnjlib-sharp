@@ -44,7 +44,8 @@ SRCS = lib-base.sml          \
        char-map.sml          \
        dynamic-array-fn.sml  \
        dynamic-array.sml     \
-       fifo.sml
+       fifo.sml              \
+       fmt-fields.sml
 
 OBJS = $(SRCS:.sml=.o)
 
