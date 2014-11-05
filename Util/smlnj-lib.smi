@@ -19,6 +19,7 @@ include "plist.smi"
 include "prime-sizes.smi"
 include "rand.smi"
 include "random.smi"
+include "real-order-stats.smi"
 
 (* queue *)
 include "left-priorityq-fn.smi"

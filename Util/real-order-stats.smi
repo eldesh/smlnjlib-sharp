@@ -1,0 +1,20 @@
+_require "basis.smi"
+_require "unsafe/unsafe.smi"
+_require "random.smi"
+
+structure RealOrderStats =
+struct
+    (* WARNING: Each of the functions exported from this module
+     * modifies its argument array by (partially) sorting it. *)
+
+    (* select the i-th order statistic *)
+    val select  : real array * int -> real
+    val select' : real ArraySlice.slice * int -> real
+
+    (* calculate the median:
+     *    if N is odd, then this is the (floor(N/2))th order statistic
+     *    otherwise it is the average of (N/2-1)th and (N/2)th *)
+    val median  : real array -> real
+    val median' : real ArraySlice.slice -> real
+end
+

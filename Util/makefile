@@ -66,7 +66,8 @@ SRCS = lib-base.sml          \
        prime-sizes.sml       \
        queue.sml             \
        rand.sml              \
-       random.sml
+       random.sml            \
+       real-order-stats.sml
 
 OBJS = $(SRCS:.sml=.o)
 
