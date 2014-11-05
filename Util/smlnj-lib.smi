@@ -3,4 +3,6 @@ include "redblack-set-fn.smi"
 include "redblack-map-fn.smi"
 include "int-redblack-set.smi"
 include "int-redblack-map.smi"
+include "word-redblack-map.smi"
+include "word-redblack-set.smi"
 
