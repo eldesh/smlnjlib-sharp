@@ -1,0 +1,15 @@
+_require "basis.smi"
+_require "list-xprod-sig.sml"
+
+structure ListXProd (* : LIST_XPROD *) =
+struct
+    val appX : (('a * 'b) -> 'c) -> ('a list * 'b list) -> unit
+	(* apply a function to the cross product of two lists *)
+
+    val mapX : (('a * 'b) -> 'c) -> ('a list * 'b list) -> 'c list
+	(* map a function across the cross product of two lists *)
+
+    val foldX : (('a * 'b * 'c) -> 'c) -> ('a list * 'b list) -> 'c -> 'c
+	(* fold a function across the cross product of two lists *)
+end
+
