@@ -1,0 +1,8 @@
+_require "basis.smi"
+
+structure TimeLimit =
+struct
+  exception TimeOut
+  val timeLimit : Time.time -> ('a -> 'b) -> 'a -> 'b
+end
+
