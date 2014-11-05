@@ -10,6 +10,7 @@ include "graph-scc-fn.smi"
 include "interval-set-fn.smi"
 include "io-util.smi"
 include "iterate.smi"
+include "keyword-fn.smi"
 
 (* format *)
 include "fmt-fields.smi"
