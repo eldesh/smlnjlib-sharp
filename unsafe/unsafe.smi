@@ -1,0 +1,14 @@
+_require "unsafe_char_vector.smi"
+_require "unsafe_char_array.smi"
+_require "unsafe_word8_vector.smi"
+
+(**
+ * emulating Unsafe structure of SML/NJ
+ *)
+structure Unsafe =
+struct
+  structure CharVector = UnsafeCharVector
+  structure CharArray  = UnsafeCharArray
+  structure Word8Vector = UnsafeWord8Vector
+end
+

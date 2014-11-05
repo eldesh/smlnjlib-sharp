@@ -1,0 +1,11 @@
+_require "unsafe_mono_array.sig"
+
+structure UnsafeCharArray (* :> UNSAFE_MONO_ARRAY *) =
+struct
+  type array (= boxed)
+  type elem   = char
+  val sub : array * int -> elem
+  val update : array * int * elem -> unit
+  val create : int -> array
+end
+
