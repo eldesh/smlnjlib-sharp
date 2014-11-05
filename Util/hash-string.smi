@@ -1,0 +1,10 @@
+_require "basis.smi"
+
+structure HashString =
+struct
+    val hashString  : string -> word
+
+    val hashSubstring : substring -> word
+end
+
+

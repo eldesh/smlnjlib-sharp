@@ -1,0 +1,33 @@
+_require "basis.smi"
+_require "atom-sig.sml"
+_require "hash-string.smi"
+
+structure Atom =
+struct
+    type atom (= boxed)
+	(* Atoms are hashed strings that support fast equality testing. *)
+
+    val atom : string -> atom
+    val atom' : substring -> atom
+	(* Map a string/substring to the corresponding unique atom. *)
+
+    val toString : atom -> string
+	(* return the string representation of the atom *)
+
+    val same : (atom * atom) -> bool
+    val sameAtom : (atom * atom) -> bool
+	(* return true if the atoms are the same; we provide "sameAtom" for
+	 * backward compatibility.
+	 *)
+
+    val compare : (atom * atom) -> order
+	(* compare two atoms for their relative order; note that this is
+	 * not lexical order!
+	 *)
+    val lexCompare : (atom * atom) -> order
+	(* compare two atoms for their lexical order *)
+
+    val hash : atom -> word
+	(* return a hash key for the atom *)
+end
+

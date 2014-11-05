@@ -10,8 +10,10 @@ SRCS = lib-base.sml \
        redblack-map-fn.sml \
        int-redblack-set.sml \
        int-redblack-map.sml \
+       word-redblack-set.sml \
        word-redblack-map.sml \
-       word-redblack-set.sml
+       hash-string.sml \
+       atom.sml
 
 OBJS = $(SRCS:.sml=.o)
 

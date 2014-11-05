@@ -5,4 +5,5 @@ include "int-redblack-set.smi"
 include "int-redblack-map.smi"
 include "word-redblack-map.smi"
 include "word-redblack-set.smi"
-
+include "hash-string.smi"
+include "atom.smi"
