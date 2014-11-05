@@ -34,7 +34,9 @@ SRCS = lib-base.sml          \
        atom-binary-map.sml   \
        atom-binary-set.sml   \
        int-binary-map.sml    \
-       int-binary-set.sml
+       int-binary-set.sml    \
+       array-qsort-fn.sml    \
+       array2.sml
 
 OBJS = $(SRCS:.sml=.o)
 

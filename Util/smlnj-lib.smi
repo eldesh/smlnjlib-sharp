@@ -36,4 +36,7 @@ include "atom-binary-map.smi"
 include "int-binary-set.smi"
 include "int-binary-map.smi"
 
+(* array *)
+include "array-qsort-fn.smi"
+include "array2.smi"
 
