@@ -78,3 +78,6 @@ include "dynamic-array-fn.smi"
 include "dynamic-array.smi"
 include "mono-array-fn.smi"
 
+(* union find *)
+include "simple-uref.smi"
+
