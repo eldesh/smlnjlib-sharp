@@ -13,7 +13,6 @@ include "iterate.smi"
 include "keyword-fn.smi"
 include "list-mergesort.smi"
 include "list-xprod.smi"
-include "parser-comb.smi"
 include "path-util.smi"
 include "plist.smi"
 include "prime-sizes.smi"
@@ -31,6 +30,10 @@ include "format-comb.smi"
 include "real-format.smi"
 include "format.smi"
 include "list-format.smi"
+
+(* scan *)
+include "parser-comb.smi"
+include "scan.smi"
 
 (* redblack tree *)
 include "redblack-set-fn.smi"
