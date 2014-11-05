@@ -5,15 +5,17 @@ VPATH = .
 INCDIR = $(patsubst %,-I%,$(subst :, ,$(VPATH)))
 SMLSHARPFLAGS = $(INCDIR)
 
-SRCS = lib-base.sml \
-       redblack-set-fn.sml \
-       redblack-map-fn.sml \
-       int-redblack-set.sml \
-       int-redblack-map.sml \
+SRCS = lib-base.sml          \
+       hash-string.sml       \
+       atom.sml              \
+       redblack-set-fn.sml   \
+       redblack-map-fn.sml   \
+       atom-redblack-set.sml \
+       atom-redblack-map.sml \
+       int-redblack-set.sml  \
+       int-redblack-map.sml  \
        word-redblack-set.sml \
        word-redblack-map.sml \
-       hash-string.sml \
-       atom.sml
 
 OBJS = $(SRCS:.sml=.o)
 
