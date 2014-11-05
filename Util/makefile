@@ -38,7 +38,8 @@ SRCS = lib-base.sml          \
        int-binary-set.sml    \
        array-qsort-fn.sml    \
        array2.sml            \
-       base64.sml
+       base64.sml            \
+       bit-array.sml
 
 OBJS = $(SRCS:.sml=.o)
 

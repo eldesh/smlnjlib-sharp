@@ -42,3 +42,6 @@ include "int-binary-map.smi"
 include "array-qsort-fn.smi"
 include "array2.smi"
 
+(* bit array *)
+include "bit-array.smi"
+
