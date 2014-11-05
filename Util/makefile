@@ -1,7 +1,7 @@
 
 SMLSHARP = smlsharp
 
-VPATH = .
+VPATH = .:..
 INCDIR = $(patsubst %,-I%,$(subst :, ,$(VPATH)))
 SMLSHARPFLAGS = $(INCDIR)
 
@@ -37,11 +37,15 @@ SRCS = lib-base.sml          \
        int-binary-map.sml    \
        int-binary-set.sml    \
        array-qsort-fn.sml    \
-       array2.sml
+       array2.sml            \
+       base64.sml
 
 OBJS = $(SRCS:.sml=.o)
 
-all: $(OBJS)
+all: unsafe/unsafe.o $(OBJS)
+
+unsafe/unsafe.o:
+	make -C ../unsafe
 
 ## .o type rules
 %.o: %.sml

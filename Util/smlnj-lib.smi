@@ -1,6 +1,7 @@
 include "lib-base.smi"
 include "hash-string.smi"
 include "atom.smi"
+include "base64.smi"
 
 (* redblack tree *)
 include "redblack-set-fn.smi"
