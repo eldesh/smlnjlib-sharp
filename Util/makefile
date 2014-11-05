@@ -54,7 +54,8 @@ SRCS = lib-base.sml          \
        interval-set-fn.sml   \
        io-util.sml           \
        iterate.sml           \
-       keyword-fn.sml
+       keyword-fn.sml        \
+       left-priorityq-fn.sml
 
 OBJS = $(SRCS:.sml=.o)
 

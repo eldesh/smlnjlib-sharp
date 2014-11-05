@@ -11,6 +11,7 @@ include "interval-set-fn.smi"
 include "io-util.smi"
 include "iterate.smi"
 include "keyword-fn.smi"
+include "left-priorityq-fn.smi"
 
 (* format *)
 include "fmt-fields.smi"
