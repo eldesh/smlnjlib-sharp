@@ -60,7 +60,8 @@ SRCS = lib-base.sml          \
        list-mergesort.sml    \
        list-xprod.sml        \
        mono-array-fn.sml     \
-       parser-comb.sml
+       parser-comb.sml       \
+       path-util.sml
 
 OBJS = $(SRCS:.sml=.o)
 
