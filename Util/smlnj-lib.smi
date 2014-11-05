@@ -11,5 +11,6 @@ include "int-redblack-set.smi"
 include "int-redblack-map.smi"
 include "word-redblack-map.smi"
 include "word-redblack-set.smi"
+include "list-set-fn.smi"
 include "list-map-fn.smi"
 

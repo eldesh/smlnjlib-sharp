@@ -18,6 +18,7 @@ SRCS = lib-base.sml          \
        int-redblack-map.sml  \
        word-redblack-set.sml \
        word-redblack-map.sml \
+       list-set-fn.sml       \
        list-map-fn.sml
 
 OBJS = $(SRCS:.sml=.o)
