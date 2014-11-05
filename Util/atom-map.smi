@@ -1,0 +1,4 @@
+_require "atom-redblack-map.smi"
+
+structure AtomMap = AtomRedBlackMap
+

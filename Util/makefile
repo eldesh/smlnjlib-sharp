@@ -12,6 +12,8 @@ SRCS = lib-base.sml          \
        redblack-map-fn.sml   \
        atom-redblack-set.sml \
        atom-redblack-map.sml \
+       atom-set.sml \
+       atom-map.sml \
        int-redblack-set.sml  \
        int-redblack-map.sml  \
        word-redblack-set.sml \
