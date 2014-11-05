@@ -80,4 +80,5 @@ include "mono-array-fn.smi"
 
 (* union find *)
 include "simple-uref.smi"
+include "uref.smi"
 
