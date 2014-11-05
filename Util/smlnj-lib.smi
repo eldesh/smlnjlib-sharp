@@ -16,6 +16,7 @@ include "list-mergesort.smi"
 include "list-xprod.smi"
 include "parser-comb.smi"
 include "path-util.smi"
+include "plist.smi"
 
 (* format *)
 include "fmt-fields.smi"

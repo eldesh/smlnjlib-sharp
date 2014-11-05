@@ -61,7 +61,8 @@ SRCS = lib-base.sml          \
        list-xprod.sml        \
        mono-array-fn.sml     \
        parser-comb.sml       \
-       path-util.sml
+       path-util.sml         \
+       plist.sml
 
 OBJS = $(SRCS:.sml=.o)
 
