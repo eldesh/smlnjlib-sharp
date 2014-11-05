@@ -7,6 +7,7 @@ include "char-map.smi"
 include "fifo.smi"
 include "getopt.smi"
 include "graph-scc-fn.smi"
+include "interval-set-fn.smi"
 
 (* format *)
 include "fmt-fields.smi"

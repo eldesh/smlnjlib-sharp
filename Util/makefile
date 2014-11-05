@@ -50,7 +50,8 @@ SRCS = lib-base.sml          \
        real-format.sml       \
        format.sml            \
        getopt.sml            \
-       graph-scc-fn.sml
+       graph-scc-fn.sml      \
+       interval-set-fn.sml
 
 OBJS = $(SRCS:.sml=.o)
 

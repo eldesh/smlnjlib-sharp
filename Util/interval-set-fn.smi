@@ -1,0 +1,92 @@
+_require "basis.smi"
+_require "interval-domain-sig.sml"
+_require "interval-set-sig.sml"
+
+functor IntervalSetFn (
+        D : sig (* INTERVAL_DOMAIN *)
+          type point
+          val compare : (point * point) -> order
+
+          val succ : point -> point
+          val pred : point -> point
+
+          val isSucc : (point * point) -> bool
+
+          val minPt : point
+          val maxPt : point
+	end) =
+struct
+    structure D =
+    struct
+      type point = D.point
+      val compare : (point * point) -> order
+
+      val succ : point -> point
+      val pred : point -> point
+
+      val isSucc : (point * point) -> bool
+
+      val minPt : point
+      val maxPt : point
+    end
+
+    type item = D.point
+    type interval = (item * item)
+    type set (= boxed)
+
+  (* the empty set and the set of all elements *)
+    val empty : set
+    val universe : set
+
+  (* a set of a single element *)
+    val singleton : item -> set
+
+  (* set the covers the given interval *)
+    val interval : item * item -> set
+
+    val isEmpty : set -> bool
+    val isUniverse : set -> bool
+
+    val member : set * item -> bool
+
+  (* return the list of items in the set *)
+    val items : set -> item list
+
+  (* return a list of intervals that represents the set *)
+    val intervals : set -> interval list
+
+  (* add a single element to the set *)
+    val add : set * item -> set
+    val add' : item * set -> set
+
+  (* add an interval to the set *)
+    val addInt : set * interval -> set
+    val addInt' : interval * set -> set
+
+  (* set operations *)
+    val complement : set -> set
+    val union : (set * set) -> set
+    val intersect : (set * set) -> set
+    val difference : (set * set) -> set
+
+  (* iterators on elements *)
+    val app    : (item -> unit) -> set -> unit
+    val foldl  : (item * 'a -> 'a) -> 'a -> set -> 'a
+    val foldr  : (item * 'a -> 'a) -> 'a -> set -> 'a
+    val filter : (item -> bool) -> set -> set
+    val all    : (item -> bool) -> set -> bool
+    val exists : (item -> bool) -> set -> bool
+
+  (* iterators on intervals *)
+    val appInt    : (interval -> unit) -> set -> unit
+    val foldlInt  : (interval * 'a -> 'a) -> 'a -> set -> 'a
+    val foldrInt  : (interval * 'a -> 'a) -> 'a -> set -> 'a
+    val filterInt : (interval -> bool) -> set -> set
+    val allInt    : (interval -> bool) -> set -> bool
+    val existsInt : (interval -> bool) -> set -> bool
+
+  (* ordering on sets *)
+    val compare : set * set -> order
+    val isSubset : set * set -> bool
+end
+
