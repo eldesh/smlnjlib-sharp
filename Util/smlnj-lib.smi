@@ -1,6 +1,7 @@
 include "lib-base.smi"
 include "hash-string.smi"
 include "atom.smi"
+(* redblack tree *)
 include "redblack-set-fn.smi"
 include "redblack-map-fn.smi"
 include "atom-redblack-set.smi"
@@ -11,6 +12,10 @@ include "int-redblack-set.smi"
 include "int-redblack-map.smi"
 include "word-redblack-map.smi"
 include "word-redblack-set.smi"
+
+(* map constructed on list *)
 include "list-set-fn.smi"
 include "list-map-fn.smi"
+include "int-list-map.smi"
+include "int-list-set.smi"
 
