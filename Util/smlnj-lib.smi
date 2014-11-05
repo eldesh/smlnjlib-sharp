@@ -60,9 +60,8 @@ include "int-binary-map.smi"
 (* array *)
 include "array-qsort-fn.smi"
 include "array2.smi"
-
-(* array *)
 include "bit-array.smi"
 include "dynamic-array-fn.smi"
 include "dynamic-array.smi"
+include "mono-array-fn.smi"
 

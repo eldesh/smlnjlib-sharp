@@ -58,7 +58,8 @@ SRCS = lib-base.sml          \
        left-priorityq-fn.sml \
        list-format.sml       \
        list-mergesort.sml    \
-       list-xprod.sml
+       list-xprod.sml        \
+       mono-array-fn.sml
 
 OBJS = $(SRCS:.sml=.o)
 
