@@ -70,7 +70,10 @@ SRCS = lib-base.sml          \
        real-order-stats.sml  \
        scan.sml              \
        simple-uref.sml       \
-       uref.sml
+       uref.sml              \
+       splaytree.sml         \
+       splay-set-fn.sml      \
+       splay-map-fn.sml
 
 OBJS = $(SRCS:.sml=.o)
 

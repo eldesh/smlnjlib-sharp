@@ -82,3 +82,8 @@ include "mono-array-fn.smi"
 include "simple-uref.smi"
 include "uref.smi"
 
+(* splay tree *)
+include "splaytree.smi"
+include "splay-set-fn.smi"
+include "splay-map-fn.smi"
+
