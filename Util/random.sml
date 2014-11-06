@@ -47,7 +47,7 @@ structure Random : RANDOM =
     val two2neg30 = 1.0/((real 0x8000)*(real 0x8000))   (* 2^~30 *)
 
     fun minus(x,y,false) = (x - y, y > x)
-      | minus(x,y,true) = (x - y - 0w1, y >= x)
+      | minus(x,y,true) = (x - y - 0w1:W.word, y >= x)
 
     datatype rand = RND of {
         vals   : W.word A.array,     (* seed array *)
