@@ -5,7 +5,8 @@ VPATH = .
 INCDIR = $(patsubst %,-I%,$(subst :, ,$(VPATH)))
 SMLSHARPFLAGS = $(INCDIR)
 
-SRCS = packword32big.sml
+SRCS = packword32big.sml \
+	   Array2.sml
 
 OBJS = $(SRCS:.sml=.o)
 
