@@ -1,29 +1,33 @@
 include "lib-base.smi"
 include "hash-string.smi"
 include "atom.smi"
-include "base64.smi"
-include "bsearch-fn.smi"
-include "char-map.smi"
-include "fifo.smi"
 include "getopt.smi"
-include "graph-scc-fn.smi"
-include "interval-set-fn.smi"
 include "io-util.smi"
+include "path-util.smi"
 include "iterate.smi"
 include "keyword-fn.smi"
-include "list-mergesort.smi"
-include "list-xprod.smi"
-include "path-util.smi"
-include "plist.smi"
 include "prime-sizes.smi"
-include "rand.smi"
-include "random.smi"
-include "real-order-stats.smi"
+include "utf8.smi"
 (*
 include "time-limit.smi"
 *)
-include "utf8.smi"
+
+(* algorithm *)
+include "bsearch-fn.smi"
+include "graph-scc-fn.smi"
+include "real-order-stats.smi"
+include "list-mergesort.smi"
+include "list-xprod.smi"
+include "base64.smi"
+include "rand.smi"
+include "random.smi"
 include "univariate-stats.smi"
+
+(* data structure *)
+include "plist.smi"
+include "fifo.smi"
+include "interval-set-fn.smi"
+include "char-map.smi"
 
 (* queue *)
 include "left-priorityq-fn.smi"
