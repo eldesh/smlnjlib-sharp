@@ -7,7 +7,8 @@ SMLSHARPFLAGS = $(INCDIR)
 
 SRCS := FrontEnd/syntax.sml   \
 		Glue/match-tree.sml   \
-		BackEnd/bt-engine.sml
+		BackEnd/bt-engine.sml \
+		BackEnd/fsm.sml
 
 OBJS = $(SRCS:.sml=.o)
 

@@ -1,0 +1,74 @@
+_require "basis.smi"
+_require "Util/smlnj-lib.smi"
+_require "FrontEnd/syntax.smi"
+_require "fsm-sig.sml"
+
+structure Nfa (* : NFA *) = 
+struct 
+    exception SyntaxNotHandled
+    
+    structure IntSet (* : ORD_SET where type Key.ord_key = int *) =
+    struct
+        structure Key (* : ORD_KEY *) =
+        struct
+            type ord_key = int
+            val compare : ord_key * ord_key -> order
+        end
+
+        type item = Key.ord_key
+        type set (= boxed)
+
+        val empty : set
+        val singleton : item -> set
+        val fromList : item list -> set
+        val add  : set * item -> set
+        val add' : (item * set) -> set
+        val addList : set * item list -> set
+        val subtract  : set * item -> set
+        val subtract' : (item * set) -> set
+        val subtractList : set * item list -> set
+        val delete : set * item -> set
+        val member : set * item -> bool
+        val isEmpty : set -> bool
+        val equal : (set * set) -> bool
+        val compare : (set * set) -> order
+        val isSubset : (set * set) -> bool
+
+        val numItems : set ->  int
+        val listItems : set -> item list
+
+        val union : set * set -> set
+        val intersection : set * set -> set
+
+        val difference : set * set -> set
+
+        val map : (item -> item) -> set -> set
+         
+        val app : (item -> unit) -> set -> unit
+
+        val foldl : (item * 'b -> 'b) -> 'b -> set -> 'b
+
+        val foldr : (item * 'b -> 'b) -> 'b -> set -> 'b
+
+        val partition : (item -> bool) -> set -> (set * set)
+
+        val filter : (item -> bool) -> set -> set
+
+        val exists : (item -> bool) -> set -> bool
+        val all : (item -> bool) -> set -> bool
+
+        val find : (item -> bool) -> set -> item option
+    end
+    
+    type nfa (= boxed)
+    
+    val build : RegExpSyntax.syntax * int -> nfa
+    val buildPattern : RegExpSyntax.syntax list -> nfa
+    val start : nfa -> IntSet.set
+    val move : nfa -> int * char -> IntSet.set
+    val chars : nfa -> int -> char list
+    val accepting : nfa -> int -> int option
+    
+    val print : nfa -> unit
+end
+

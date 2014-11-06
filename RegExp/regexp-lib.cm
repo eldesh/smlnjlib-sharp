@@ -29,7 +29,9 @@ is
 #endif
 
 (* utility functions *)
+  Glue/match-tree-sig.sml
   Glue/match-tree.sml
+  BackEnd/fsm-sig.sml
   BackEnd/fsm.sml
 
 (* internal glue language *)
