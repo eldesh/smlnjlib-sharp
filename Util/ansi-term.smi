@@ -1,0 +1,23 @@
+_require "basis.smi"
+
+structure ANSITerm =
+struct
+    datatype color
+      = Black | Red | Green | Yellow | Blue | Magenta | Cyan | White
+
+    datatype style
+      = FG of color	(* foreground color *)
+      | BG of color	(* background color *)
+      | BF		(* bold/bright *)
+      | UL		(* underline *)
+      | BLINK
+      | REV		(* reverse video *)
+      | INVIS		(* invisible *)
+
+  (* return the command string for the given styles; the empty list is "normal" *)
+    val toString : style list -> string
+
+  (* output commands to set the given styles; the empty list is "normal" *)
+    val setStyle : (TextIO.outstream * style list) -> unit
+end
+
