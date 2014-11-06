@@ -5,7 +5,8 @@ VPATH = .:..:FrontEnd:BackEnd:Glue
 INCDIR = $(patsubst %,-I%,$(subst :, ,$(VPATH)))
 SMLSHARPFLAGS = $(INCDIR)
 
-SRCS := FrontEnd/syntax.sml
+SRCS := FrontEnd/syntax.sml \
+		Glue/match-tree.sml
 
 OBJS = $(SRCS:.sml=.o)
 
