@@ -1,48 +1,79 @@
+include "lib-base-sig.sml"
 include "lib-base.smi"
 include "hash-string.smi"
+include "atom-sig.sml"
 include "atom.smi"
+include "getopt-sig.sml"
 include "getopt.smi"
+include "io-util-sig.sml"
 include "io-util.smi"
+include "path-util-sig.sml"
 include "path-util.smi"
+include "iterate-sig.sml"
 include "iterate.smi"
 include "keyword-fn.smi"
 include "prime-sizes.smi"
+include "utf8-sig.sml"
 include "utf8.smi"
 include "ansi-term.smi"
 (* is this realizable on SML# ?
 include "time-limit.smi"
 *)
 
+(* ord *)
+include "ord-key-sig.sml"
+include "ord-map-sig.sml"
+include "ord-set-sig.sml"
+
 (* algorithm *)
 include "bsearch-fn.smi"
+include "graph-scc-sig.sml"
 include "graph-scc-fn.smi"
 include "real-order-stats.smi"
+include "listsort-sig.sml"
 include "list-mergesort.smi"
+include "list-xprod-sig.sml"
 include "list-xprod.smi"
+include "base64-sig.sml"
 include "base64.smi"
+include "rand-sig.sml"
 include "rand.smi"
+include "random-sig.sml"
 include "random.smi"
 include "univariate-stats.smi"
 
 (* data structure *)
+include "plist-sig.sml"
 include "plist.smi"
+include "fifo-sig.sml"
 include "fifo.smi"
+include "interval-domain-sig.sml"
+include "interval-set-sig.sml"
 include "interval-set-fn.smi"
+include "char-map-sig.sml"
 include "char-map.smi"
 
 (* queue *)
+include "mono-priorityq-sig.sml"
+include "priority-sig.sml"
 include "left-priorityq-fn.smi"
+include "queue-sig.sml"
 include "queue.smi"
 
 (* format *)
 include "fmt-fields.smi"
+include "format-comb-sig.sml"
 include "format-comb.smi"
 include "real-format.smi"
+include "format-sig.sml"
 include "format.smi"
+include "list-format-sig.sml"
 include "list-format.smi"
 
 (* scan *)
+include "parser-comb-sig.sml"
 include "parser-comb.smi"
+include "scan-sig.sml"
 include "scan.smi"
 
 (* redblack tree *)
@@ -64,9 +95,15 @@ include "int-list-map.smi"
 include "int-list-set.smi"
 
 (* hash *)
+include "hash-set-fn.smi"
+include "hash-key-sig.sml"
+include "hash-set-sig.sml"
+include "mono-hash2-table-sig.sml"
 include "hash2-table-fn.smi"
+include "mono-hash-table-sig.sml"
 include "hash-table-fn.smi"
 include "hash-table-rep.smi"
+include "hash-table-sig.sml"
 include "hash-table.smi"
 include "int-hash-table.smi"
 include "int-hash-table.smi"
@@ -81,23 +118,35 @@ include "int-binary-set.smi"
 include "int-binary-map.smi"
 
 (* array *)
+include "array2-sig.sml"
+include "array2.smi"
+include "array-sort-sig.sml"
 include "array-qsort.smi"
 include "array-qsort-fn.smi"
+include "array2-sig.sml"
 include "array2.smi"
+include "bit-array-sig.sml"
 include "bit-array.smi"
 (*
+include "bit-vector-sig.sml"
 include "bit-vector.smi"
 *)
+include "dynamic-array-sig.sml"
 include "dynamic-array-fn.smi"
+include "mono-dynamic-array-sig.sml"
 include "dynamic-array.smi"
+include "mono-array-sort-sig.sml"
 include "mono-array-fn.smi"
 
 (* union find *)
 include "simple-uref.smi"
+include "uref-sig.sml"
 include "uref.smi"
 
 (* splay tree *)
+include "splaytree-sig.sml"
 include "splaytree.smi"
 include "splay-set-fn.smi"
 include "splay-map-fn.smi"
+
 
