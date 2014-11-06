@@ -1,0 +1,5 @@
+_require "basis.smi"
+_require "bit-vector-sig.sml"
+
+structure BitVector = BitArray.Vector
+
