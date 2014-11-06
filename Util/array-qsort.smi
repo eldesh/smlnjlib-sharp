@@ -1,0 +1,12 @@
+_require "basis.smi"
+_require "unsafe/unsafe.smi"
+_require "array-sort-sig.sml"
+
+structure ArrayQSort (* : ARRAY_SORT *) =
+struct
+    type 'a array (= boxed)
+
+    val sort   : ('a * 'a -> order) -> 'a array -> unit
+    val sorted : ('a * 'a -> order) -> 'a array -> bool
+end
+

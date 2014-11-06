@@ -37,6 +37,7 @@ SRCS = lib-base.sml          \
        int-binary-map.sml    \
        int-binary-set.sml    \
        array-qsort-fn.sml    \
+       array-qsort.sml       \
        array2.sml            \
        base64.sml            \
        bit-array.sml         \

@@ -80,6 +80,7 @@ include "int-binary-set.smi"
 include "int-binary-map.smi"
 
 (* array *)
+include "array-qsort.smi"
 include "array-qsort-fn.smi"
 include "array2.smi"
 include "bit-array.smi"
