@@ -23,6 +23,7 @@ include "real-order-stats.smi"
 include "time-limit.smi"
 *)
 include "utf8.smi"
+include "univariate-stats.smi"
 
 (* queue *)
 include "left-priorityq-fn.smi"

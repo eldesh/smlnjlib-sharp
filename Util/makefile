@@ -74,8 +74,9 @@ SRCS = lib-base.sml          \
        splaytree.sml         \
        splay-set-fn.sml      \
        splay-map-fn.sml      \
-#      time-limit.sml        \
+	   univariate-stats.sml  \
 	   utf8.sml
+#       time-limit.sml        \
 
 OBJS = $(SRCS:.sml=.o)
 

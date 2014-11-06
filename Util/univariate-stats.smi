@@ -1,0 +1,42 @@
+_require "basis.smi"
+_require "real-order-stats.smi"
+_require "unsafe/unsafe.smi"
+
+structure UnivariateStats =
+struct
+    (* We distinguish between two kinds of samples.  Only the "heavy"
+     * kind permits calculation of average deviation and median.
+     * It is also considerably more expensive because it keeps an
+     * array of all points while the "light" variety is constant-size. *)
+    type light (= unit)
+    type heavy (= boxed)
+
+    type 'a sample     (= boxed) (* light or heavy *)
+    type 'a evaluation (= boxed) (* light or heavy *)
+
+    (* Samples are built incrementally by adding points to an initially
+     * empty sample: *)
+    val lempty :         light sample
+    val hempty : unit -> heavy sample
+    val ladd   : real * light sample -> light sample (* constant *)
+    val hadd   : real * heavy sample -> heavy sample (* amortized constant *)
+
+    (* Evaluate the sample; this completes all the expensive work except
+     * for things that depend on "heavy" samples: *)
+    val evaluate : 'a sample -> 'a evaluation (* constant *)
+
+    (* extracting of "cheap" information (constant-time): *)
+    val N                 : 'a evaluation -> int
+    val n                 : 'a evaluation -> real (* N as real *)
+    val mean              : 'a evaluation -> real
+    val variance          : 'a evaluation -> real
+    val standardDeviation : 'a evaluation -> real
+    val skew              : 'a evaluation -> real
+    val kurtosis          : 'a evaluation -> real
+
+    (* extracting of "expensive" information: *)
+    val median            : heavy evaluation -> real (* randomized linear *)
+    val averageDeviation  : heavy evaluation -> real (* linear *)
+end
+
+
