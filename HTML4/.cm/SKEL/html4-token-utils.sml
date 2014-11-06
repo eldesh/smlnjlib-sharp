@@ -1,2 +1,0 @@
-Skeleton 5
-d2f3d"TextIO"‰¢HTML4AttrLexer"d"AntlrStreamPos"ad"HTML4TokenUtils"h5Ca‰¢H4U"gp1‰¢HTML4Utils"ad"HTML4AttrParser"jgp1ˇgp1e"HTML4AttrParseFn"egp1d"HTML4Tokens"f7ˇÅd"Atom"Cd"Char"d"String"d"Substring"d"IntInf"ˇÅNad"AtomMap"jjh0gp1e"RedBlackMapFn"gp1c"ORD_MAP"N
