@@ -9,7 +9,8 @@ SRCS := FrontEnd/syntax.sml    \
 		Glue/match-tree.sml    \
 		BackEnd/bt-engine.sml  \
 		BackEnd/fsm.sml        \
-		BackEnd/dfa-engine.sml
+		BackEnd/dfa-engine.sml \
+		BackEnd/thompson-engine.sml
 
 OBJS = $(SRCS:.sml=.o)
 

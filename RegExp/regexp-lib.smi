@@ -3,6 +3,7 @@ include "Glue/match-tree.smi"
 include "BackEnd/bt-engine.smi"
 include "BackEnd/fsm.smi"
 include "BackEnd/dfa-engine.smi"
+include "BackEnd/thompson-engine.smi"
 
 include "FrontEnd/syntax-sig.sml"
 include "Glue/match-tree-sig.sml"
