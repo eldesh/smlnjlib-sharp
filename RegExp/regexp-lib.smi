@@ -1,16 +1,27 @@
-include "FrontEnd/syntax.smi"
-include "FrontEnd/awk-syntax.smi"
+
+(* utility functions *)
+include "Glue/match-tree-sig.sml"
 include "Glue/match-tree.smi"
-include "BackEnd/bt-engine.smi"
+include "BackEnd/fsm-sig.sml"
 include "BackEnd/fsm.smi"
+
+(* internal glue language *)
+include "FrontEnd/syntax-sig.sml"
+include "FrontEnd/syntax.smi"
+
+(* front/back-ends signatures *)
+include "FrontEnd/parser-sig.sml"
+include "BackEnd/engine-sig.sml"
+
+(* Frontends *)
+include "FrontEnd/awk-syntax.smi"
+
+(* Engines *)
+include "BackEnd/bt-engine.smi"
 include "BackEnd/dfa-engine.smi"
 include "BackEnd/thompson-engine.smi"
-include "Glue/regexp-fn.smi"
 
-include "FrontEnd/parser-sig.sml"
-include "FrontEnd/syntax-sig.sml"
-include "Glue/match-tree-sig.sml"
-include "BackEnd/engine-sig.sml"
-include "BackEnd/fsm-sig.sml"
+(* Glue functor *)
 include "Glue/regexp-sig.sml"
+include "Glue/regexp-fn.smi"
 
