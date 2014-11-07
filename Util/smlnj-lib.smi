@@ -118,13 +118,13 @@ include "int-binary-set.smi"
 include "int-binary-map.smi"
 
 (* array *)
+(* conflict with Array2:ARRAY2 of Basis lib
 include "array2-sig.sml"
 include "array2.smi"
+ *)
 include "array-sort-sig.sml"
 include "array-qsort.smi"
 include "array-qsort-fn.smi"
-include "array2-sig.sml"
-include "array2.smi"
 include "bit-array-sig.sml"
 include "bit-array.smi"
 (*

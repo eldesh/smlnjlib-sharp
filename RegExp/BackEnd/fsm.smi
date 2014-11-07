@@ -1,4 +1,5 @@
 _require "basis.smi"
+_require "basis/Array2.smi"
 _require "Util/smlnj-lib.smi"
 _require "FrontEnd/syntax.smi"
 _require "fsm-sig.sml"
@@ -39,24 +40,18 @@ struct
 
         val union : set * set -> set
         val intersection : set * set -> set
-
         val difference : set * set -> set
 
         val map : (item -> item) -> set -> set
-         
         val app : (item -> unit) -> set -> unit
 
         val foldl : (item * 'b -> 'b) -> 'b -> set -> 'b
-
         val foldr : (item * 'b -> 'b) -> 'b -> set -> 'b
 
         val partition : (item -> bool) -> set -> (set * set)
-
         val filter : (item -> bool) -> set -> set
-
         val exists : (item -> bool) -> set -> bool
         val all : (item -> bool) -> set -> bool
-
         val find : (item -> bool) -> set -> item option
     end
     
