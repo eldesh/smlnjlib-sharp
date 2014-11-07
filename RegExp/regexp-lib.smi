@@ -1,10 +1,12 @@
 include "FrontEnd/syntax.smi"
+include "FrontEnd/awk-syntax.smi"
 include "Glue/match-tree.smi"
 include "BackEnd/bt-engine.smi"
 include "BackEnd/fsm.smi"
 include "BackEnd/dfa-engine.smi"
 include "BackEnd/thompson-engine.smi"
 
+include "FrontEnd/parser-sig.sml"
 include "FrontEnd/syntax-sig.sml"
 include "Glue/match-tree-sig.sml"
 include "BackEnd/engine-sig.sml"

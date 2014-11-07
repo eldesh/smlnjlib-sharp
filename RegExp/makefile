@@ -10,7 +10,8 @@ SRCS := FrontEnd/syntax.sml    \
 		BackEnd/bt-engine.sml  \
 		BackEnd/fsm.sml        \
 		BackEnd/dfa-engine.sml \
-		BackEnd/thompson-engine.sml
+		BackEnd/thompson-engine.sml \
+		FrontEnd/awk-syntax.sml
 
 OBJS = $(SRCS:.sml=.o)
 
