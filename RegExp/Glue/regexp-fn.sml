@@ -47,3 +47,12 @@ functor RegExpFn (
 	  end
 
   end
+
+functor RegExpFn' (
+  R : sig
+    structure P : REGEXP_PARSER 
+    structure E : REGEXP_ENGINE
+  end)
+= RegExpFn (structure P=R.P structure E=R.E)
+
+	

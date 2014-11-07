@@ -11,7 +11,8 @@ SRCS := FrontEnd/syntax.sml    \
 		BackEnd/fsm.sml        \
 		BackEnd/dfa-engine.sml \
 		BackEnd/thompson-engine.sml \
-		FrontEnd/awk-syntax.sml
+		FrontEnd/awk-syntax.sml \
+		Glue/regexp-fn.sml
 
 OBJS = $(SRCS:.sml=.o)
 
