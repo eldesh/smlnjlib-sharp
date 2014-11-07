@@ -41,16 +41,16 @@ struct
                  -> 'a region -> unit
 
   val app  : traversal -> ('a -> unit) -> 'a array -> unit
-(*
+
   val foldi : traversal
                 -> (int * int * 'a * 'b -> 'b)
                   -> 'b -> 'a region -> 'b
   val fold  : traversal
                 -> ('a * 'b -> 'b) -> 'b -> 'a array -> 'b
+
   val modifyi : traversal
                   -> (int * int * 'a -> 'a)
                     -> 'a region -> unit
   val modify  : traversal -> ('a -> 'a) -> 'a array -> unit
-*)
 end
 

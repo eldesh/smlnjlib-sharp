@@ -1,5 +1,5 @@
 
-structure Array2 (* :> ARRAY2 *) =
+structure Array2 :> ARRAY2 =
 struct
 local
   structure A = Array
@@ -16,7 +16,9 @@ in
                    }
   datatype traversal = RowMajor | ColMajor
   
-  fun array (r, c, init) = {body = A.array (r*c, init), cols=c}
+  fun array (r, c, init) =
+    if r < 0 orelse c < 0 then raise Size
+    else {body = A.array (r*c, init), cols=c}
 
   fun assertSize size xs =
     if size = length xs then ()
@@ -43,6 +45,11 @@ in
     then (f i; for (i+1,j) f)
     else ()
 
+  fun for' (i,j) next f =
+    if i=j then ()
+    else
+      (f i; for' (next i,j) next f)
+  
   fun tabulate trv (r, c, f) =
     let
       val () = if r < 0 orelse c < 0 then raise Size
@@ -59,73 +66,125 @@ in
       {body=arr, cols=c}
     end
   
-  fun sub ({body,cols}, i, j) = A.sub (body, i*cols+j)
-
-  fun update ({body,cols}, i, j, a) = A.update (body, i*cols+j, a)
-
   fun nCols      {body,cols} = cols
   fun nRows      {body,cols} = A.length body div cols
   fun dimensions (arr as {body,cols}) = (cols, nRows arr)
   
+  fun sub (arr as {body,cols}, i, j) =
+    if i<0 orelse j<0 orelse nRows arr<=i orelse nCols arr<=j
+    then raise Subscript
+    else A.sub (body, i*cols+j)
+
+  fun update (arr as {body,cols}, i, j, a) =
+    if i<0 orelse j<0 orelse nRows arr<=i orelse nCols arr<=j
+    then raise Subscript
+    else A.update (body, i*cols+j, a)
+
   fun row (arr as {body, cols}, i) =
-    A.vector (A.tabulate(cols, fn c=> sub(arr,i,c)))
+    if nRows arr <= i orelse i < 0 then raise Subscript
+    else A.vector (A.tabulate(cols, fn c=> sub(arr,i,c)))
 
   fun column (arr, j) =
-    A.vector (A.tabulate(nRows arr, fn i=> sub(arr,i,j)))
+    if nCols arr <= j orelse j < 0 then raise Subscript
+    else A.vector (A.tabulate(nRows arr, fn i=> sub(arr,i,j)))
 
-  fun is_valid { base, row, col, nrows, ncols } =
+  fun is_valid {base, row, col, nrows, ncols} =
+    0 <= getOpt(nrows,0) andalso
+    0 <= getOpt(ncols,0) andalso 
     0 <= row andalso (row + getOpt (nrows,0)) <= nRows base
     andalso
     0 <= col andalso (col + getOpt (ncols,0)) <= nCols base
-  
-  fun copy { src, dst, dst_row, dst_col } =
-    if not (is_valid src) then raise Subscript
-    else
-      let
-        val derived = {base=dst, row=dst_row, col=dst_col,
-                         nrows= #nrows src, ncols= #ncols src}
-        val () = if not (is_valid derived) then raise Subscript
-                 else ()
-      in
-        if #base src = dst then raise Fail "NotImplemented Array2.copy on same array"
-        else
-          for (#row src, getOpt(#nrows src, nRows (#base src))) (fn i=>
-            for (#col src, getOpt(#ncols src, nCols (#base src))) (fn j=>
-                update (dst, dst_row+i, dst_col+j, sub (#base src, i, j))))
-      end
 
+  fun maybe x  NONE    _ = x
+    | maybe _ (SOME x) f = f x
+
+  fun reg_rows {base,row,nrows,...} =
+    maybe (nRows base - row) nrows (fn r=>r)
+
+  fun reg_cols {base,col,ncols,...} =
+    maybe (nCols base - col) ncols (fn c=>c)
+
+  fun copy {src, dst, dst_row, dst_col} =
+    let
+      val () = if not (is_valid src) then raise Subscript else ()
+      val derived = {base=dst, row=dst_row, col=dst_col,
+                       nrows= SOME(reg_rows src), ncols= SOME(reg_cols src)}
+      val () = if not (is_valid derived) then raise Subscript else ()
+
+      val for_row =
+        if #base src = dst andalso
+          (#row src <= dst_row andalso dst_row <= #row src + reg_rows src)
+        then for' (reg_rows src-1,~1) (fn n=> n-1) (* bottom shifted & overlapped *)
+        else for (0, reg_rows src)
+
+      val for_col =
+        if #base src = dst andalso
+          (#col src <= dst_col andalso dst_col <= #col src + reg_cols src)
+        then for' (reg_cols src-1,~1) (fn n=> n-1) (* right shifted & overlapped *)
+        else for (0, reg_cols src)
+    in
+      for_row (fn i=>
+        for_col (fn j=>
+            update(dst, dst_row+i, dst_col+j
+                    , sub(#base src, #row src+i, #col src+j))))
+    end
   
   fun appi trv f (reg as {base,row,col,nrows,ncols}) =
     if not (is_valid reg) then raise Subscript
     else
       case trv
         of RowMajor =>
-             for (row, getOpt(nrows, nRows base)) (fn i=>
-                for (col, getOpt(ncols, nCols base)) (fn j=>
-                    () before f (i, j, sub(base, i, j))))
+             for (row, row+reg_rows reg) (fn i=>
+                for (col, col+reg_cols reg) (fn j=>
+                    f (i, j, sub(base, i, j))))
          | ColMajor =>
-             for (col, getOpt(ncols, nCols base)) (fn j=>
-                for (row, getOpt(nrows, nRows base)) (fn i=>
-                    () before f (i, j, sub(base, i, j))))
+             for (col, col+reg_cols reg) (fn j=>
+                for (row, row+reg_rows reg) (fn i=>
+                    f (i, j, sub(base, i, j))))
+
+  fun fullregion arr =
+        {base=arr, row=0, col=0, nrows=NONE, ncols=NONE}
 
   fun app trv f arr =
-    let
-      val range = {base=arr,row=0,col=0,nrows=NONE,ncols=NONE}
-    in
-      appi trv (f o #3) range
-    end
+      appi trv (f o #3) (fullregion arr)
 
-  (*
-  val foldi : traversal
-                -> (int * int * 'a * 'b -> 'b)
-                  -> 'b -> 'a region -> 'b
-  val fold  : traversal
-                -> ('a * 'b -> 'b) -> 'b -> 'a array -> 'b
-  val modifyi : traversal
-                  -> (int * int * 'a -> 'a)
-                    -> 'a region -> unit
-  val modify  : traversal -> ('a -> 'a) -> 'a array -> unit
-  *)
+  fun foldl_n (b,e) f acc =
+    if b = e then acc
+    else
+      foldl_n (b+1,e) f (f(b,acc))
+
+  fun foldi tr f init (reg as {base,row,col,nrows,ncols}) =
+    if not (is_valid reg) then raise Subscript
+    else
+      case tr
+        of RowMajor =>
+            foldl_n (row, row+reg_rows reg) (fn (i,racc)=>
+              foldl_n (col, col+reg_cols reg) (fn (j,cacc)=>
+                f (i,j,sub(base,i,j),cacc)) racc) init
+         | ColMajor =>
+            foldl_n (col, col+reg_cols reg) (fn (j,cacc)=>
+              foldl_n (row, row+reg_rows reg) (fn (i,racc)=>
+                f (i,j,sub(base,i,j),racc)) cacc) init
+
+  fun fold tr f init arr =
+    foldi tr (fn(_,_,a,b)=> f(a,b)) init (fullregion arr)
+
+  fun modifyi tr f (reg as {base,row,col,nrows,ncols}) =
+    if not (is_valid reg) then raise Subscript
+    else
+      case tr
+        of RowMajor =>
+            for (row, row+reg_rows reg) (fn i =>
+              for (col, col+reg_cols reg) (fn j =>
+                update (base,i,j,f(i,j,sub(base,i,j)))))
+         | ColMajor =>
+            for (col, col+reg_cols reg) (fn j =>
+              for (row, row+reg_rows reg) (fn i =>
+                update (base,i,j,f(i,j,sub(base,i,j)))))
+
+  fun modify tr f arr =
+    modifyi tr (fn(_,_,x)=> f x) (fullregion arr)
+
 end (* local *)
 end
 
