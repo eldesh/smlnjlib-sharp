@@ -1,22 +1,24 @@
 
 SMLSHARP = smlsharp
 
-VPATH = .:..:FrontEnd:BackEnd:Glue
+VPATH = .:..:../..
 INCDIR = $(patsubst %,-I%,$(subst :, ,$(VPATH)))
 SMLSHARPFLAGS = $(INCDIR)
 
-SRCS := FrontEnd/syntax.sml    \
-		Glue/match-tree.sml    \
-		BackEnd/bt-engine.sml  \
-		BackEnd/fsm.sml        \
-		BackEnd/dfa-engine.sml \
-		BackEnd/thompson-engine.sml \
-		FrontEnd/awk-syntax.sml \
-		Glue/regexp-fn.sml
+SRCS := test-fn.sml \
+        engines-smlsharp.sml \
+		run.sml
 
 OBJS = $(SRCS:.sml=.o)
+TEST = run
 
-all: $(OBJS)
+all: $(TEST)
+
+$(TEST): run.smi $(OBJS)
+	@echo "compiling test..."
+	@$(SMLSHARP) $(SMLSHARPFLAGS) -o run $<
+	@echo "run test..."
+	./$@
 
 ## .o type rules
 %.o: %.sml
@@ -33,11 +35,7 @@ all: $(OBJS)
 
 .PHONY: clean
 clean:
+	rm -rf $(TEST)
 	rm -rf $(OBJS)
 	rm -rf $(filter %.d,$(SRCS:.sml=.d))
-	make -C Tests/ clean
-
-.PHONY: test
-test: $(OBJS)
-	make -C Tests/
 

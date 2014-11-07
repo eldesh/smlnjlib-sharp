@@ -48,3 +48,11 @@ functor TestFn (
 	  print "** tests done\n")
 
   end
+
+functor TestFn' (
+  R : sig
+    val engineName : string
+    structure RE : REGEXP
+  end)
+  = TestFn(val engineName = R.engineName structure RE=R.RE)
+

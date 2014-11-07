@@ -1,0 +1,23 @@
+_require "basis.smi"
+_require "Util/smlnj-lib.smi"
+_require "regexp-lib.smi"
+
+functor TestFn' (
+  R : sig
+    val engineName : string
+    structure RE : (* REGEXP *)
+    sig
+      type regexp
+      type 'a match = {pos : 'a, len : int} MatchTree.match_tree
+      val compile : (char,'a) StringCvt.reader -> (regexp, 'a) StringCvt.reader
+      val compileString : string -> regexp
+      val find : regexp -> (char,'a) StringCvt.reader -> ('a match, 'a) StringCvt.reader
+      val prefix : regexp -> (char,'a) StringCvt.reader -> ('a match, 'a) StringCvt.reader
+      val match : (string * ('a match -> 'b)) list
+        -> (char,'a) StringCvt.reader -> ('b, 'a) StringCvt.reader
+    end
+  end) =
+struct
+  val doTests : unit -> unit
+end
+
