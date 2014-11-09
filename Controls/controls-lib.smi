@@ -1,4 +1,6 @@
 _require "control-reps.smi"
 _require "controls-sig.sml"
 _require "controls.smi"
+_require "control-set-sig.sml"
+_require "control-set.smi"
 
