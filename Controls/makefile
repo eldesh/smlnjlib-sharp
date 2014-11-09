@@ -8,7 +8,8 @@ SMLSHARPFLAGS = $(INCDIR)
 SRCS := control-reps.sml \
 		controls.sml     \
 		control-set.sml  \
-		control-util.sml
+		control-util.sml \
+		registry.sml
 
 OBJS = $(SRCS:.sml=.o)
 
