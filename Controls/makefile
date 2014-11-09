@@ -6,8 +6,9 @@ INCDIR = $(patsubst %,-I%,$(subst :, ,$(VPATH)))
 SMLSHARPFLAGS = $(INCDIR)
 
 SRCS := control-reps.sml \
+		controls.sml     \
 		control-set.sml  \
-		controls.sml
+		control-util.sml
 
 OBJS = $(SRCS:.sml=.o)
 
