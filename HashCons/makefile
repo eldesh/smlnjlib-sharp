@@ -7,7 +7,8 @@ SMLSHARPFLAGS = $(INCDIR)
 
 SRCS := hash-cons.sml \
 		hash-cons-ground-fn.sml \
-		hash-cons-atom.sml
+		hash-cons-atom.sml \
+		hash-cons-set.sml
 
 OBJS = $(SRCS:.sml=.o)
 
