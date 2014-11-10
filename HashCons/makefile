@@ -9,7 +9,8 @@ SRCS := hash-cons.sml \
 		hash-cons-ground-fn.sml \
 		hash-cons-atom.sml \
 		hash-cons-map.sml \
-		hash-cons-set.sml
+		hash-cons-set.sml \
+		hash-cons-string.sml
 
 OBJS = $(SRCS:.sml=.o)
 
