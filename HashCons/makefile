@@ -33,9 +33,5 @@ all: $(OBJS)
 clean:
 	rm -rf $(OBJS)
 	rm -rf $(filter %.d,$(SRCS:.sml=.d))
-	make -C Tests/ clean
 
-.PHONY: test
-test: $(OBJS)
-	make -C Tests/
 
