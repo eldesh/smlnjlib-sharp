@@ -5,7 +5,8 @@ VPATH = .:..
 INCDIR = $(patsubst %,-I%,$(subst :, ,$(VPATH)))
 SMLSHARPFLAGS = $(INCDIR)
 
-SRCS := hash-cons.sml
+SRCS := hash-cons.sml \
+        hash-cons-ground-fn.sml
 
 OBJS = $(SRCS:.sml=.o)
 

@@ -1,3 +1,4 @@
 include "hash-cons-sig.sml"
 include "hash-cons.smi"
+include "hash-cons-ground-fn.smi"
 
