@@ -1,0 +1,12 @@
+_require "Util/atom.smi"
+_require "hash-cons-ground-fn.smi"
+_require "hash-cons.smi"
+
+structure HashConsAtom =
+struct
+  type hash_key = Atom.atom
+  type obj = hash_key HashCons.obj
+  val mk : hash_key -> obj
+end
+
+
