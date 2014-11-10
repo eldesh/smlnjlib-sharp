@@ -2,4 +2,8 @@ include "hash-cons-sig.sml"
 include "hash-cons.smi"
 include "hash-cons-ground-fn.smi"
 include "hash-cons-atom.smi"
+include "hash-cons-set-sig.sml"
+include "hash-cons-set.smi"
+include "hash-cons-map-sig.sml"
+include "hash-cons-map.smi"
 
