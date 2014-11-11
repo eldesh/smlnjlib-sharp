@@ -1,3 +1,5 @@
+include "basis/Array2.smi"
+include "Util/smlnj-lib.smi"
 
 (* utility functions *)
 include "Glue/match-tree-sig.sml"
