@@ -1,0 +1,110 @@
+_require "basis.smi"
+_require "pp-stream-sig.sml"
+_require "pp-desc-sig.sml"
+
+functor PPDescFn (S : sig
+    (* PP_STREAM *)
+    type device
+    type stream
+
+    type token
+    type style
+
+    datatype indent
+      = Abs of int
+      | Rel of int
+
+    val openStream  : device -> stream
+    val flushStream : stream -> unit
+    val closeStream : stream -> unit
+    val getDevice   : stream -> device
+
+    val openHBox   : stream -> unit
+    val openVBox   : stream -> indent -> unit
+    val openHVBox  : stream -> indent -> unit
+    val openHOVBox : stream -> indent -> unit
+    val openBox    : stream -> indent -> unit
+    val closeBox   : stream -> unit
+
+    val token   : stream -> token -> unit
+    val string  : stream -> string -> unit
+
+    val pushStyle : (stream * style) -> unit
+    val popStyle  : stream -> unit
+
+    val break   : stream -> {nsp : int, offset : int} -> unit
+    val space   : stream -> int -> unit
+    val cut     : stream -> unit
+    val newline : stream -> unit
+    val nbSpace : stream -> int -> unit
+
+    val control : stream -> (device -> unit) -> unit
+  end) (* : PP_DESC *) =
+struct
+    structure PPS = (* S : PP_STREAM *)
+    struct
+      type device = S.device
+      type stream = S.stream
+
+      type token = S.token
+      type style = S.style
+
+      datatype indent = datatype S.indent
+
+      val openStream  : device -> stream
+      val flushStream : stream -> unit
+      val closeStream : stream -> unit
+      val getDevice   : stream -> device
+
+      val openHBox   : stream -> unit
+      val openVBox   : stream -> indent -> unit
+      val openHVBox  : stream -> indent -> unit
+      val openHOVBox : stream -> indent -> unit
+      val openBox    : stream -> indent -> unit
+      val closeBox   : stream -> unit
+
+      val token   : stream -> token -> unit
+      val string  : stream -> string -> unit
+
+      val pushStyle : (stream * style) -> unit
+      val popStyle  : stream -> unit
+
+      val break   : stream -> {nsp : int, offset : int} -> unit
+      val space   : stream -> int -> unit
+      (* space n == break{nsp=n, offset=0} *)
+      val cut     : stream -> unit
+      (* cut == break{nsp=0, offset=0} *)
+      val newline : stream -> unit
+      val nbSpace : stream -> int -> unit
+      (* emits a nonbreakable space *)
+
+      val control : stream -> (device -> unit) -> unit
+    end
+
+  (* The pp_desc type is a concrete representation of a PP layout. *)
+    type pp_desc (= boxed)
+
+  (* exported PP description constructors *)
+    val hBox    : pp_desc list -> pp_desc
+    val vBox    : (PPS.indent * pp_desc list) -> pp_desc
+    val hvBox   : (PPS.indent * pp_desc list) -> pp_desc
+    val hovBox  : (PPS.indent * pp_desc list) -> pp_desc
+    val box     : (PPS.indent * pp_desc list) -> pp_desc
+
+    val token   : PPS.token -> pp_desc
+    val string  : string -> pp_desc
+
+    val style   : (PPS.style * pp_desc list) -> pp_desc
+
+    val break   : {nsp : int, offset : int} -> pp_desc
+    val space   : int -> pp_desc
+    val cut     : pp_desc
+    val newline : pp_desc
+    val nbSpace : int -> pp_desc
+
+    val control : (PPS.device -> unit) -> pp_desc
+
+  (* pretty print a description *)
+    val description : PPS.stream * pp_desc -> unit
+end
+

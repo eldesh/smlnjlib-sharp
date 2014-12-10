@@ -1,0 +1,88 @@
+_require "basis.smi"
+_require "pp-token-sig.sml"
+_require "pp-device-sig.sml"
+_require "pp-stream-sig.sml"
+_require "Util/format.smi"
+_require "Util/list-format.smi"
+_require "Util/queue.smi"
+
+functor PPStreamFn' (S : sig
+    structure Token : (* PP_TOKEN *)
+    sig
+      type token
+      type style
+
+      val string : token -> string
+      val style  : token -> style
+      val size   : token -> int
+    end
+
+    structure Device : (* PP_DEVICE *)
+    sig
+      type device
+      type style
+
+      val sameStyle : (style * style) -> bool
+
+      val pushStyle : (device * style) -> unit
+      val popStyle  : device -> unit
+   
+      val defaultStyle : device -> style
+
+      val depth : device -> int option
+      val lineWidth : device -> int option
+      val textWidth : device -> int option
+
+      val space : (device * int) -> unit
+
+      val newline : device -> unit
+
+      val string : (device * string) -> unit
+      val char : (device * char) -> unit
+
+      val flush : device -> unit
+    end
+    sharing type Token.style = Device.style
+  end) =
+struct
+    type device = S.Device.device
+    type stream (= boxed)
+
+    type token = S.Token.token
+    type style = S.Token.style
+
+    datatype indent
+      = Abs of int
+      | Rel of int
+
+    val openStream  : device -> stream
+    val flushStream : stream -> unit
+    val closeStream : stream -> unit
+    val getDevice   : stream -> device
+
+    val openHBox   : stream -> unit
+    val openVBox   : stream -> indent -> unit
+    val openHVBox  : stream -> indent -> unit
+    val openHOVBox : stream -> indent -> unit
+    val openBox    : stream -> indent -> unit
+    val closeBox   : stream -> unit
+
+    val token   : stream -> token -> unit
+    val string  : stream -> string -> unit
+
+    val pushStyle : (stream * style) -> unit
+    val popStyle  : stream -> unit
+
+    val break   : stream -> {nsp : int, offset : int} -> unit
+    val space   : stream -> int -> unit
+
+    val cut     : stream -> unit
+
+    val newline : stream -> unit
+    val nbSpace : stream -> int -> unit
+
+    val control : stream -> (device -> unit) -> unit
+
+    val dump : (TextIO.outstream * stream) -> unit
+end
+

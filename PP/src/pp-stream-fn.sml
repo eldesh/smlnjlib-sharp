@@ -474,3 +474,11 @@ functor PPStreamFn (
 
   end
 
+functor PPStreamFn' (S : sig
+    structure Token : PP_TOKEN
+    structure Device : PP_DEVICE
+    sharing type Token.style = Device.style
+  end)
+  = PPStreamFn(structure Token=S.Token
+               structure Device=S.Device)
+
