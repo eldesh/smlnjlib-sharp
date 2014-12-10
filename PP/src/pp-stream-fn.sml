@@ -13,8 +13,14 @@ functor PPStreamFn (
 (**
   ) : PP_STREAM =
 **)
-  ) : sig include PP_STREAM val dump : (TextIO.outstream * stream) -> unit end =
-  struct
+  )
+  (* to avoid a bug of SML#2.0.0
+  : sig
+      include PP_STREAM
+      val dump : (TextIO.outstream * stream) -> unit
+    end
+    *)
+= struct
 
     structure D = Device
     structure T = Token

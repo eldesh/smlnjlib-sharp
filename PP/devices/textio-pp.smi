@@ -1,0 +1,53 @@
+_require "basis.smi"
+_require "string-token.smi"
+_require "simple-textio-dev.smi"
+_require "src/pp-stream-sig.sml"
+_require "src/pp-stream-fn.smi"
+
+structure TextIOPP =
+struct
+  (* include PP_STREAM *)
+  type device = SimpleTextIODev.device
+  type stream (= boxed)
+
+  type token = string
+
+  type style = StringToken.style
+
+  datatype indent
+    = Abs of int
+    | Rel of int
+
+  val openStream  : device -> stream
+  val flushStream : stream -> unit
+  val closeStream : stream -> unit
+  val getDevice   : stream -> device
+
+  val openHBox   : stream -> unit
+  val openVBox   : stream -> indent -> unit
+  val openHVBox  : stream -> indent -> unit
+  val openHOVBox : stream -> indent -> unit
+  val openBox    : stream -> indent -> unit
+  val closeBox   : stream -> unit
+
+  val token   : stream -> token -> unit
+  val string  : stream -> string -> unit
+
+  val pushStyle : (stream * style) -> unit
+  val popStyle  : stream -> unit
+
+  val break   : stream -> {nsp : int, offset : int} -> unit
+  val space   : stream -> int -> unit
+  (* space n == break{nsp=n, offset=0} *)
+  val cut     : stream -> unit
+  (* cut == break{nsp=0, offset=0} *)
+  val newline : stream -> unit
+  val nbSpace : stream -> int -> unit
+  (* emits a nonbreakable space *)
+
+  val control : stream -> (device -> unit) -> unit
+  (* end PP_STREAM *)
+
+  val openOut : {dst : TextIO.outstream, wid : int} -> stream
+end
+

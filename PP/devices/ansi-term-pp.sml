@@ -31,12 +31,14 @@ structure ANSITermPP : sig
 	val token = Tok
       end
 
-    structure PP = PPStreamFn (
+    structure PP = PPStreamFn' (
+    struct
       structure Token = Tok
-      structure Device = ANSITermDev)
+      structure Device = ANSITermDev
+    end)
 
     open PP
 
     fun openOut arg = openStream(ANSITermDev.openDev arg)
-
   end
+

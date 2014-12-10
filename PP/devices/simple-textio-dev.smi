@@ -1,0 +1,38 @@
+_require "basis.smi"
+_require "src/pp-device-sig.sml"
+
+structure SimpleTextIODev =
+struct
+  (* include PP_DEVICE *)
+  datatype device = DEV of {
+    dst : TextIO.outstream,
+    wid : int
+  }
+
+  type style = unit
+
+  val sameStyle : (style * style) -> bool
+
+  val pushStyle : (device * style) -> unit
+  val popStyle  : device -> unit
+ 
+  val defaultStyle : device -> style
+
+  val depth : device -> int option
+  val lineWidth : device -> int option
+  val textWidth : device -> int option
+
+  val space : (device * int) -> unit
+
+  val newline : device -> unit
+
+  val string : (device * string) -> unit
+  val char : (device * char) -> unit
+
+  val flush : device -> unit
+  (* PP_DEVICE *)
+
+  val openDev : {dst : TextIO.outstream, wid : int} -> device
+end
+
+

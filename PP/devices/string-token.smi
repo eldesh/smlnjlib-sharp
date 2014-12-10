@@ -1,0 +1,12 @@
+_require "basis.smi"
+_require "src/pp-token-sig.sml"
+
+structure StringToken =
+struct
+  type style = unit
+  type token = string
+  val string : token -> string
+  val style  : token -> style
+  val size   : token -> int
+end
+

@@ -1,13 +1,19 @@
 
 SMLSHARP = smlsharp
 
-VPATH = .:..:src
+VPATH = .:..:src:devices
 INCDIR = $(patsubst %,-I%,$(subst :, ,$(VPATH)))
 SMLSHARPFLAGS = $(INCDIR)
 
 SRCS := src/pp-debug-fn.sml \
 		src/pp-desc-fn.sml \
-		src/pp-stream-fn.sml
+		src/pp-stream-fn.sml \
+		string-token.sml \
+		simple-textio-dev.sml \
+		textio-pp.sml \
+		ansi-term-dev.sml \
+		ansi-term-pp.sml
+#    	html-dev.sml
 
 OBJS = $(SRCS:.sml=.o)
 

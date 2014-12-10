@@ -1,0 +1,62 @@
+_require "basis.smi"
+_require "src/pp-token-sig.sml"
+_require "src/pp-stream-sig.sml"
+_require "src/pp-stream-fn.smi"
+_require "ansi-term-dev.smi"
+
+structure ANSITermPP =
+struct
+  structure Tok =
+  struct
+    (* include PP_TOKEN *)
+    type token (= boxed)
+    type style = ANSITermDev.style
+
+    val string : token -> string
+    val style  : token -> style
+    val size   : token -> int
+
+    val token : (ANSITermDev.style * string) -> token
+  end
+
+  (* signature PP_STREAM *)
+  type device = ANSITermDev.device
+  type stream (= boxed)
+
+  type token = Tok.token
+  type style = ANSITermDev.style
+
+  datatype indent
+    = Abs of int		(* indent relative to outer indentation *)
+    | Rel of int		(* indent relative to start of box *)
+
+  val openStream  : device -> stream
+  val flushStream : stream -> unit
+  val closeStream : stream -> unit
+  val getDevice   : stream -> device
+
+  val openHBox   : stream -> unit
+  val openVBox   : stream -> indent -> unit
+  val openHVBox  : stream -> indent -> unit
+  val openHOVBox : stream -> indent -> unit
+  val openBox    : stream -> indent -> unit
+  val closeBox   : stream -> unit
+
+  val token   : stream -> token -> unit
+  val string  : stream -> string -> unit
+
+  val pushStyle : (stream * style) -> unit
+  val popStyle  : stream -> unit
+
+  val break   : stream -> {nsp : int, offset : int} -> unit
+  val space   : stream -> int -> unit
+  val cut     : stream -> unit
+  val newline : stream -> unit
+  val nbSpace : stream -> int -> unit
+
+  val control : stream -> (device -> unit) -> unit
+  (* PP_STREAM *)
+
+  val openOut : {dst : TextIO.outstream, wid : int} -> stream
+end
+
