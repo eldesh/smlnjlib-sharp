@@ -271,10 +271,3 @@ functor Hash2TableFn (
 
   end (* MONO_HASH2_TABLE *)
 
-functor Hash2TableFn' (
-  K : sig
-    structure Key1 : HASH_KEY
-    structure Key2 : HASH_KEY
-  end) : MONO_HASH2_TABLE =
-  Hash2TableFn(structure Key1=K.Key1 structure Key2=K.Key2)
-

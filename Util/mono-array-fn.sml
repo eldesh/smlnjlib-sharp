@@ -14,8 +14,3 @@ functor MonoArrayFn (type elem) :> MONO_ARRAY where type elem = elem
     type vector = elem Vector.vector
   end
 
-functor MonoArrayFn' (A : sig type elem end)
-:> MONO_ARRAY
-   where type elem = A.elem
-= MonoArrayFn(type elem=A.elem)
-

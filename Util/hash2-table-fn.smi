@@ -3,7 +3,7 @@ _require "hash-key-sig.sml"
 _require "mono-hash2-table-sig.sml"
 _require "hash-table-rep.smi"
 
-functor Hash2TableFn' (
+functor Hash2TableFn (
     K : sig
       structure Key1 : sig (* HASH_KEY *)
         type hash_key

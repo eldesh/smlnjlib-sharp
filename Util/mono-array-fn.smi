@@ -1,6 +1,6 @@
 _require "basis.smi"
 
-functor MonoArrayFn' (A : sig type elem end) =
+functor MonoArrayFn (A : sig type elem end) =
 struct
   eqtype array (= boxed)
   type elem = A.elem
