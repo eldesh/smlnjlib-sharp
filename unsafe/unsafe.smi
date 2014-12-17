@@ -1,4 +1,5 @@
 _require "unsafe_array.smi"
+_require "unsafe_vector.smi"
 _require "unsafe_char_vector.smi"
 _require "unsafe_char_array.smi"
 _require "unsafe_word8_vector.smi"
@@ -8,6 +9,7 @@ _require "unsafe_word8_vector.smi"
  *)
 structure Unsafe =
 struct
+  structure Vector      = UnsafeVector
   structure Array       = UnsafeArray
   structure CharVector  = UnsafeCharVector
   structure CharArray   = UnsafeCharArray

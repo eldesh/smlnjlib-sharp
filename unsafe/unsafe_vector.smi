@@ -1,0 +1,9 @@
+_require "unsafe_array.smi"
+_require "unsafe_vector.sig"
+
+structure UnsafeVector (* :> UNSAFE_VECTOR *) =
+struct
+  val sub : 'a vector * int -> 'a
+  val create : int * 'a list -> 'a vector
+end
+
