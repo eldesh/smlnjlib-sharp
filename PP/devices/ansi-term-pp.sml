@@ -31,11 +31,9 @@ structure ANSITermPP : sig
 	val token = Tok
       end
 
-    structure PP = PPStreamFn' (
-    struct
+    structure PP = PPStreamFn (
       structure Token = Tok
-      structure Device = ANSITermDev
-    end)
+      structure Device = ANSITermDev)
 
     open PP
 

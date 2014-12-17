@@ -15,11 +15,9 @@ structure TextIOPP : sig
 
   end = struct
 
-    structure PP = PPStreamFn' (
-    struct
+    structure PP = PPStreamFn (
       structure Token = StringToken
-      structure Device = SimpleTextIODev
-    end)
+      structure Device = SimpleTextIODev)
 
     open PP
 

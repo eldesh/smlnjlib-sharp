@@ -13,14 +13,8 @@ functor PPStreamFn (
 (**
   ) : PP_STREAM =
 **)
-  )
-  (* to avoid a bug of SML#2.0.0
-  : sig
-      include PP_STREAM
-      val dump : (TextIO.outstream * stream) -> unit
-    end
-    *)
-= struct
+  ) : sig include PP_STREAM val dump : (TextIO.outstream * stream) -> unit end =
+struct
 
     structure D = Device
     structure T = Token
@@ -479,12 +473,4 @@ functor PPStreamFn (
     fun control strm ctlFn = enqueueToken (strm, CTL ctlFn)
 
   end
-
-functor PPStreamFn' (S : sig
-    structure Token : PP_TOKEN
-    structure Device : PP_DEVICE
-    sharing type Token.style = Device.style
-  end)
-  = PPStreamFn(structure Token=S.Token
-               structure Device=S.Device)
 

@@ -6,7 +6,7 @@ _require "Util/format.smi"
 _require "Util/list-format.smi"
 _require "Util/queue.smi"
 
-functor PPStreamFn' (S : sig
+functor PPStreamFn (S : sig
     structure Token : (* PP_TOKEN *)
     sig
       type token
