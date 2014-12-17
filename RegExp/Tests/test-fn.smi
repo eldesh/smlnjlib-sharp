@@ -2,7 +2,7 @@ _require "basis.smi"
 _require "Util/smlnj-lib.smi"
 _require "regexp-lib.smi"
 
-functor TestFn' (
+functor TestFn (
   R : sig
     val engineName : string
     structure RE : (* REGEXP *)

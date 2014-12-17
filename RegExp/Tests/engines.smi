@@ -3,15 +3,15 @@ _require "Util/smlnj-lib.smi"
 _require "regexp-lib.smi"
 _require "test-fn.smi"
 
-structure ThompsonRE' = struct
+structure ThompsonRE = struct
   val doTests : unit -> unit
 end
 
-structure DfaRE' = struct
+structure DfaRE = struct
   val doTests : unit -> unit
 end
 
-structure BackTrackRE' = struct
+structure BackTrackRE = struct
   val doTests : unit -> unit
 end
 

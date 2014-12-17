@@ -5,7 +5,7 @@ _require "FrontEnd/parser-sig.sml"
 _require "BackEnd/engine-sig.sml"
 _require "regexp-sig.sml"
 
-functor RegExpFn' (
+functor RegExpFn (
   R : sig
     structure P : (* REGEXP_PARSER *)
     sig

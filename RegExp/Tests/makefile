@@ -6,7 +6,7 @@ INCDIR = $(patsubst %,-I%,$(subst :, ,$(VPATH)))
 SMLSHARPFLAGS = $(INCDIR)
 
 SRCS := test-fn.sml \
-        engines-smlsharp.sml \
+        engines.sml \
 		run.sml
 
 OBJS = $(SRCS:.sml=.o)
