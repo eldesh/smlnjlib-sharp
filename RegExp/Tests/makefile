@@ -31,7 +31,9 @@ $(TEST): run.smi $(OBJS)
 		| sed "s|\($*\)\.o[ :]*|\1.o $@ : |g" > $@; \
 		[ -s $@ ] || rm -rf $@'
 
+ifeq (,$(findstring $(MAKECMDGOALS),clean))
 -include $(filter %.d,$(SRCS:.sml=.d))
+endif
 
 .PHONY: clean
 clean:
