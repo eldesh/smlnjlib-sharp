@@ -9,6 +9,7 @@ SRCS = unsafe.sml \
        unsafe_char_array.sml \
        unsafe_char_vector.sml \
        unsafe_word8_vector.sml \
+       unsafe_vector.sml \
        unsafe_array.sml
 
 OBJS = $(SRCS:.sml=.o)

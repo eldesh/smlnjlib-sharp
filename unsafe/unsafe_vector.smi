@@ -1,3 +1,4 @@
+_require "basis.smi"
 _require "unsafe_array.smi"
 _require "unsafe_vector.sig"
 
