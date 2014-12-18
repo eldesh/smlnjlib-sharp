@@ -71,8 +71,11 @@ include "list-format-sig.sml"
 include "list-format.smi"
 
 (* scan *)
+(* official SML# distribution export same structure & signature.
+ * see smlsharp/src/smlnj-lib.smi
 include "parser-comb-sig.sml"
 include "parser-comb.smi"
+ *)
 include "scan-sig.sml"
 include "scan.smi"
 
