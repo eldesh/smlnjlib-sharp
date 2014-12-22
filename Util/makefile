@@ -75,9 +75,9 @@ SRCS = lib-base.sml          \
        splaytree.sml         \
        splay-set-fn.sml      \
        splay-map-fn.sml      \
-	   univariate-stats.sml  \
-	   utf8.sml              \
-	   ansi-term.sml
+       univariate-stats.sml  \
+       utf8.sml              \
+       ansi-term.sml
 #      bit-vector.sml
 #      time-limit.sml
 
