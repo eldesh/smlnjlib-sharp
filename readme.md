@@ -2,7 +2,7 @@
 What is this
 ===============================
 
-ported smlnjlib for SML#
+ported smlnjlib for [SML#][1]
 
 
 Environment
@@ -12,13 +12,27 @@ Environment
 - port from SML/NJ 110.77
 
 
+Build
+===============================
+
+
+ $ make -C basis
+ $ make -C unsafe
+ $ make -C Util
+ $ make -C RegExp
+ $ make -C PP
+
+
 Attention
 ===============================
 
-* functors take derived form signature, are bit modified and published to take a wrapper structure.
-  This came from limitations of SML# .
-
 * Using HashTableFn.mkTable function (defined in Util/hash-table-fn.sml) would occurs an error in SML#2.0.0 .
-  This is reported as issue#28 in the semi-official SML# repository.
+  This is reported as issue#28 in the [semi-official SML# repository][2].
+
+
+----
+
+[1]: http://www.pllab.riec.tohoku.ac.jp/smlsharp/
+[2]: https://github.com/smlsharp/smlsharp
 
 
