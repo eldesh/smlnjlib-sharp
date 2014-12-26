@@ -82,6 +82,7 @@ SRCS = lib-base.sml          \
 #      time-limit.sml
 
 OBJS = $(SRCS:.sml=.o)
+DEPENDS = $(filter %.d,$(SRCS:.sml=.d))
 
 all: unsafe/unsafe.o basis/packword32big.o $(OBJS)
 
@@ -92,18 +93,18 @@ basis/packword32big.o:
 	make -C ../basis
 
 ## .o type rules
-%.o: %.sml
+$(OBJS): %.o: %.sml
 	$(SMLSHARP) $(SMLSHARPFLAGS) -c $<
 
 ## generate for SML dependence
-%.d: %.sml
-	@echo "generate [$@] from [$*]"
+$(DEPENDS): %.d: %.sml
+	@echo "  GEN [$@]"
 	@$(SHELL) -ec '$(SMLSHARP) -MM $(SMLSHARPFLAGS) $< \
-		| sed "s/\($*\)\.o[ :]*/\1.o $@ : /g" > $@; \
+		| sed "s|\($*\)\.o[ :]*|\1.o $@ : |g" > $@; \
 		[ -s $@ ] || rm -rf $@'
 
 ifeq (,$(findstring $(MAKECMDGOALS),clean))
--include $(filter %.d,$(SRCS:.sml=.d))
+-include $(DEPENDS)
 endif
 
 .PHONY: clean
