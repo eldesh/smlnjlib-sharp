@@ -270,4 +270,3 @@ functor Hash2TableFn (
 	  (HTRep.bucketSizes(! tbl1), HTRep.bucketSizes(! tbl2))
 
   end (* MONO_HASH2_TABLE *)
-

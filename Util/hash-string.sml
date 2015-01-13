@@ -26,7 +26,7 @@ structure HashString : sig
   (* fun hashString s = CharVector.foldl hashChar 0w0 s *)
     local
       fun x + y = Word.toIntX (Word.+ (Word.fromInt x, Word.fromInt y))
-      val sub = CharVector.sub
+      val sub = Unsafe.CharVector.sub
       fun hash (s, i0, e) = let
 	    fun loop (h, i) = if i >= e
 		  then h
