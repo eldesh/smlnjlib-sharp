@@ -17,12 +17,9 @@ Environment
 Build
 ===============================
 
+just type like below:
 
- $ make -C basis
- $ make -C unsafe
- $ make -C Util
- $ make -C RegExp
- $ make -C PP
+ $ make -f Makefile.smlsharp
 
 
 Attention

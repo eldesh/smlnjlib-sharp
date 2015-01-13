@@ -1,0 +1,16 @@
+
+SUBDIR = basis unsafe Util Controls HashCons RegExp PP
+
+.PHONY: all
+all:
+	@for dir in $(SUBDIR); do \
+		make -C $$dir ; \
+	done
+
+.PHONY: clean
+clean:
+	@for dir in $(SUBDIR); do \
+		make -C $$dir clean; \
+	done
+
+

@@ -24,7 +24,7 @@ all: $(OBJS)
 
 ## generate for SML dependence
 %.d: %.sml
-	@echo "generate [$@] from [$*]"
+	@echo "  GEN [$@]"
 	@$(SHELL) -ec '$(SMLSHARP) -MM $(SMLSHARPFLAGS) $< \
 		| sed "s|\($*\)\.o[ :]*|\1.o $@ : |g" > $@; \
 		[ -s $@ ] || rm -rf $@'
