@@ -6,6 +6,43 @@ Utility library written in StandardML.
 Ported *smlnjlib* from SML/NJ 110.77 to [SML#][1].
 
 
+Supported Module
+===============================
+
+Below modules are supported with SML# .
+'Supported' means 'compile-able with SML# compiler' here.
+
+
+| Module | Support |
+|:------ | ------- |
+|Controls| Yes     |
+|Doc     | No      |
+|HashCons| Yes     |
+|HTML    | No      |
+|HTML4   | No      |
+|INet    | No      |
+|JSON    | No      |
+|PP      | Yes     |
+|Reactive| No      |
+|RegExp  | Yes     |
+|SExp    | No      |
+|Unix    | No      |
+|Util    | Yes     |
+|XML     | No      |
+
+
+Auxiliary Modules
+-------------------------------
+
+Some auxiliary modules are provided for SML# .
+These are used in smlnjlib modules as an abstruction layer of SMLNJ and SML# .
+
+| Module |
+| ------ |
+| Basis  |
+| Unsafe |
+
+
 Environment
 ===============================
 
