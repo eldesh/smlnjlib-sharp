@@ -35,7 +35,7 @@ Auxiliary Modules
 -------------------------------
 
 Some auxiliary modules are provided for SML# .
-These are used in smlnjlib modules as an abstruction layer of SMLNJ and SML# .
+These are used in smlnjlib modules as an abstraction layer of SMLNJ and SML# .
 
 | Module |
 | ------ |
